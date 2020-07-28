@@ -25,5 +25,5 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
         <appender-ref ref="console"/>
     </root>
     
-    <logger name="com.example.usStore.dao.mybatis.mapper" level="debug"/> 
+    <logger name="saeut.dao.mybatis.mapper" level="debug"/> 
 </configuration>

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
    xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                   http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
    id="WebApp_ID" version="4.0">
+   
   <display-name>Saeut</display-name>
   <description>2020-07 teamTIPS</description>
 
@@ -20,7 +20,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
           classpath:applicationContext.xml
-         classpath:dataAccessContext-mybatis.xml 
+          classpath:dataAccessContext-mybatis.xml 
    </param-value>
   </context-param>
   
@@ -51,6 +51,6 @@
  		<url-pattern>/*</url-pattern>
   </filter-mapping>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 </web-app>

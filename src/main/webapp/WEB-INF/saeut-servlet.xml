@@ -29,5 +29,6 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>	 
 	
+	<mvc:view-controller path="/shop/index.do" view-name="index"/>
 	
 </beans>

@@ -21,6 +21,8 @@ public class Account implements Serializable {
     private String address1;
     private String address2;
     private int type;
+    
+	/* JavaBeans Properties */
 	public String getId() {
 		return id;
 	}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.AccountMapper">
+  <cache />
+  
+	  <select id="getAccountByUserId" resultType="Account">
+	    select id, password, name, nickname, phone, birth, pic, address1, address2, type 
+		from Account 
+		where id = #{id}
+	  </select>
+  
+  </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.DemandMapper">
+  <cache />
+  
+	  <select id="getDemandByUserId" resultType="Demand">
+	    select rank, score, description, type, id 
+		from Demand 
+		where id = #{id}
+	  </select>
+	  
+	  <select id="getAllDemand" resultType="Demand">
+	    select rank, score, description, type, id  
+		from Demand
+	  </select>
+	  
+	   <insert id="insertDemand"  parameterType="Demand">
+		 insert into Demand(rank, score, description, type, id)
+		 values(#{rank}, #{score}, #{description}, #{type}, #{id})
+		</insert>
+	
+   	  <update id="modDemand"  parameterType="Demand">
+	     update Demand
+	     set rank=#{rank}, score=#{score}, description=#{description}, type=#{type}
+	     where
+	     id=#{id}
+   	  </update> 
+     
+      <delete id="removeDemand"  parameterType="String">
+	   delete from Demand
+	   where
+	   id=#{id}
+	  </delete>
+	  
+  
+  </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.SupplyMapper">
+  <cache />
+  
+	   <select id="getSupplyByUserId" resultType="Supply">
+	    select rank, score, description, type, id 
+		from Supply 
+		where id = #{id}
+	  </select>
+	  
+	  <select id="getAllSupply" resultType="Supply">
+	    select rank, score, description, type, id  
+		from Supply
+	  </select>
+	  
+	   <insert id="insertSupply"  parameterType="Supply">
+		 insert into Supply(rank, score, description, type, id)
+		 values(#{rank}, #{score}, #{description}, #{type}, #{id})
+		</insert>
+	
+   	  <update id="modSupply"  parameterType="Supply">
+	     update Supply
+	     set rank=#{rank}, score=#{score}, description=#{description}, type=#{type}
+	     where
+	     id=#{id}
+   	  </update> 
+     
+      <delete id="removeSupply"  parameterType="String">
+	   delete from Supply
+	   where
+	   id=#{id}
+	  </delete>
+	  
+  
+  </mapper>

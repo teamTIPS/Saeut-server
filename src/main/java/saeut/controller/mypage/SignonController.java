@@ -24,7 +24,7 @@ public class SignonController {
 		
 		Account account = myPageFacade.getAccountByUserId(id);
 		System.out.println("내가 출력한 계정 아이디 : " + account.getId());
-		System.out.println("폰번호 : " + account.getPhone());
+		System.out.println("폰번호2rff3 : " + account.getPhone());
 		
 		return new ModelAndView("account/SignOnForm");
 	}

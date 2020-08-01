@@ -4,26 +4,26 @@
   <cache />
   
 	  <select id="getAccountByUserId" resultType="Account">
-	    select id, password, name, nickname, phone, birth, pic, address1, address2, type 
+	    select id, password, name, nickname, phone, pic, type
 		from Account 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllAccount" resultType="Account">
-	    select id, password, name, nickname, phone, birth, pic, address1, address2, type 
+	    select id, password, name, nickname, phone, pic,type 
 		from Account
 	  </select>
 	  
 	   <insert id="insertAccount"  parameterType="Account">
-		 insert into Account(id, password, name, nickname, phone, birth, pic, address1, address2, type)
-		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone}, #{birth}, 
-		 #{pic}, #{address1}, #{address2}, #{type})
+		 insert into Account(id, password, name, nickname, phone, pic, type)
+		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone}, 
+		 #{pic},#{type})
 		</insert>
 	
    	  <update id="modAccount"  parameterType="Account">
 	     update Account
-	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}, birth=#{birth}, 
-	     pic=#{pic}, address1=#{address1}, address2=#{address2}, type=#{type}
+	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}, 
+	     pic=#{pic}, type=#{type}
 	     where
 	     id=#{id}
    	  </update> 

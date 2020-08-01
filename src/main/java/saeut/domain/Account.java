@@ -16,10 +16,7 @@ public class Account implements Serializable {
     private String name;
     private String nickname; 
     private int phone;
-    private Date birth;
     private String pic;
-    private String address1;
-    private String address2;
     private int type;
     
 	/* JavaBeans Properties */
@@ -53,29 +50,11 @@ public class Account implements Serializable {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
 	public String getPic() {
 		return pic;
 	}
 	public void setPic(String pic) {
 		this.pic = pic;
-	}
-	public String getAddress1() {
-		return address1;
-	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
 	}
 	public int getType() {
 		return type;

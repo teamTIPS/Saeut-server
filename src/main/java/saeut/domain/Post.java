@@ -14,11 +14,11 @@ public class Post implements Serializable{
 	private String title; //게시물 제목
 	private Date post_date; //게시글 추가한 날짜 
 	private String contents; // 게시글 내용
-	private Date start_date;
-	private Date due_date;
-	private Date birth;
-	private String address1;
-	private String address2;
+	private Date start_date; // 돌봄 요청 시작 날짜 -> 모바일 캘린더
+	private Date due_date; // 돌봄 요청 마지막 날짜  -> 모바일 캘린더 
+	private Date birth; // 돌봄이 필요한 대상의 생년월일 -> 모바일 캘린더 
+	private String address1; // 돌봄이 필요한 대상의 주소1
+	private String address2; // 돌봄이 필요한 대상의 주소2
 	
 	public int getPost_id() {
 		return post_id;

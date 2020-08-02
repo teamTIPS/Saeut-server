@@ -8,14 +8,15 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class CheckList implements Serializable{
 	
-	private int check_type;
-	private String name;
-	private boolean checked;
-	public int getCheck_type() {
-		return check_type;
+	private int cert_id; // (FK, PK) 
+	private String name; // 자격증 이름 
+	private boolean checked; // 요청자가 체크박스 체크 여부 
+	
+	public int getCert_id() {
+		return cert_id;
 	}
-	public void setCheck_type(int check_type) {
-		this.check_type = check_type;
+	public void setCert_id(int cert_id) {
+		this.cert_id = cert_id;
 	}
 	public String getName() {
 		return name;

@@ -14,9 +14,9 @@ public class Certificate implements Serializable {
 	private String cert_name; //자격증 이름
 	private Date cert_date; //자격증 취득 날짜
 	private String cert_inst; //발행 기관 이름 
-	private String id; // (FK)
-	private int check_type; // (FK)
-	
+	private String id; // (FK) Account userId 
+	private boolean verify; // 자격증 진위 여부를 검증 default:false
+
 	public String getCert_id() {
 		return cert_id;
 	}
@@ -41,11 +41,17 @@ public class Certificate implements Serializable {
 	public void setCert_inst(String cert_inst) {
 		this.cert_inst = cert_inst;
 	}
-	public String getID() {
+	public String getId() {
 		return id;
 	}
-	public void setID(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
+	public boolean isVerify() {
+		return verify;
+	}
+	public void setVerify(boolean verify) {
+		this.verify = verify;
+	}
+	
 }

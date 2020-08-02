@@ -7,11 +7,12 @@ import java.io.Serializable;
 * */
 @SuppressWarnings("serial")
 public class Supply implements Serializable{
+	
 	private int rank;
 	private float score;
 	private String description;
-	private int type;
-	private String id;
+	private int type; // (FK)
+	private String id; // (FK) - PK
 	
 	public int getRank() {
 		return rank;

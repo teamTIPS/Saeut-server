@@ -10,11 +10,12 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Certificate implements Serializable {
 	
-	private String cert_id;
-	private String cert_name;
-	private Date cert_date;
-	private String cert_inst;
-	private String id;
+	private String cert_id; //(PK)
+	private String cert_name; //자격증 이름
+	private Date cert_date; //자격증 취득 날짜
+	private String cert_inst; //발행 기관 이름 
+	private String id; // (FK)
+	private int check_type; // (FK)
 	
 	public String getCert_id() {
 		return cert_id;

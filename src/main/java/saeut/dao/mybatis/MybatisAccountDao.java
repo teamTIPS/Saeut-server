@@ -22,6 +22,11 @@ public class MybatisAccountDao implements AccountDao {
 	}
 	
 	@Override
+	public Account getAccountByUserIdAndPassword(String id, String password) {
+		return accountMapper.getAccountByUserIdAndPassword(id, password);
+	};
+	
+	@Override
 	public List<Account> getAllAccount() throws DataAccessException{
 		return accountMapper.getAllAccount();
 	};
@@ -39,9 +44,6 @@ public class MybatisAccountDao implements AccountDao {
 	@Override
 	public void removeAccount(String userId) {
 		accountMapper.removeAccount(userId);
-	};
-	
-	
-
+	}
 	
 }

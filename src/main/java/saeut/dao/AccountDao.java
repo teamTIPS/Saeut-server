@@ -11,6 +11,9 @@ public interface AccountDao {
 	// userId로 Account 가져오기
 	Account getAccountByUserId(String id) throws DataAccessException;
 	
+	// userId랑 password로 Account 가져오기
+	Account getAccountByUserIdAndPassword(String id, String password);		
+	
 	// 모든 Account 가져오기
 	List<Account> getAllAccount() throws DataAccessException;
 	

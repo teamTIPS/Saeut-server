@@ -31,10 +31,18 @@ public class MyPageImpl implements MyPageFacade{
 	@Autowired
 	private SupplyDao supplyDao;
 	
+	/*
+	 * AccountDao
+	 */
 	@Override
 	public Account getAccountByUserId(String id) {
 		return accountDao.getAccountByUserId(id);
 	}
+
+	@Override
+	public Account getAccountByUserIdAndPassword(String id, String password) {
+		return accountDao.getAccountByUserIdAndPassword(id, password);
+	};
 	
 	@Override
 	public List<Account> getAllAccount(){
@@ -56,6 +64,9 @@ public class MyPageImpl implements MyPageFacade{
 		accountDao.removeAccount(userId);
 	}
 
+	/*
+	 * CertificateDao
+	 */
 	@Override
 	public List<Certificate> getAllCertificate() {
 		return certificateDao.getAllCertificate();
@@ -81,6 +92,10 @@ public class MyPageImpl implements MyPageFacade{
 		certificateDao.removeCertificate(cert_id);
 	}
 
+	/*
+	 * DemandDao
+	 */
+	
 	@Override
 	public List<Demand> getAllDemand() {
 		return demandDao.getAllDemand();
@@ -106,6 +121,10 @@ public class MyPageImpl implements MyPageFacade{
 		demandDao.removeDemand(userId);
 	}
 
+	/*
+	 * SupplyDao
+	 */
+	
 	@Override
 	public List<Supply> getAllSupply() {
 		return supplyDao.getAllSupply();
@@ -129,6 +148,7 @@ public class MyPageImpl implements MyPageFacade{
 	@Override
 	public void removeSupply(String userId) {
 		supplyDao.removeSupply(userId);
-	};
+	}
+
 	
 }

@@ -3,6 +3,7 @@ package saeut.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,14 @@ public class PostImpl implements PostFacade {
 
 	@Autowired
 	private PostDao postDao;
-	@Autowired
+	
 	private CheckListDao checkListDao;
 	
+	@Autowired
+	public void setCheckListDao(CheckListDao checkListDao) {
+		this.checkListDao = checkListDao;
+	}
+
 	/* Post  */
 	@Override
 	public List<Post> getAllPost() {

@@ -9,6 +9,9 @@ public interface AccountMapper {
 	// 모든 Account 가져오기
 	List<Account> getAllAccount();
 	
+	// userId랑 password로 Account 가져오기
+	Account getAccountByUserIdAndPassword(String id, String password);	
+	
 	// userId로 Account 가져오기
 	Account getAccountByUserId(String userId);
 	

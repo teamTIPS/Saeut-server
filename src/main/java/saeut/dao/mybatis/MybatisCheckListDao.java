@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import saeut.dao.CheckListDao;
 import saeut.dao.mybatis.mapper.CheckListMapper;
 import saeut.domain.CheckList;
 
 @Repository
-public class MybatisCheckListDao implements CheckListMapper{
+public class MybatisCheckListDao implements CheckListDao{
 
 	@Autowired
 	private CheckListMapper checkListMapper;

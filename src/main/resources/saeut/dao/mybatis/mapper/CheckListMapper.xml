@@ -15,8 +15,4 @@
   	limit 6
   </select> <!-- 대충써논것..다시 수정하기 -->
   
-<!--   
-  <insert id= "">
-  사용자가 체크한거 인서트 
-  </insert> -->
  </mapper>

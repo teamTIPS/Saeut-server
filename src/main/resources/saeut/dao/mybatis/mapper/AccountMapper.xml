@@ -9,6 +9,12 @@
 		where id = #{id}
 	  </select>
 	  
+  	  <select id="getAccountByUserIdAndPassword" resultType="Account">
+	    select id, password, name, nickname, phone, pic, type
+		from Account 
+		where id = #{id} and password = #{password}
+  	  </select>
+	  
 	  <select id="getAllAccount" resultType="Account">
 	    select id, password, name, nickname, phone, pic,type 
 		from Account

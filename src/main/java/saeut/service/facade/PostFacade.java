@@ -12,10 +12,10 @@ public interface PostFacade {
 	/////////////////////////////////////////////////////////////////////////
 	
 	List<Post> getAllPost();
-	Post getPostByUserId(String userId);
+	List<Post> getPostByUserId(String userId);
 	void insertPost(Post Post);
 	void modPost(Post Post);
-	void removePost(String userId);
+	void removePost(int post_id);
 	
 	/////////////////////////////////////////////////////////////////////////
 	/* 돌봄 요청자가 체크하는 CheckList */

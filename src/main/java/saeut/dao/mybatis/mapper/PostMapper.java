@@ -10,7 +10,7 @@ public interface PostMapper {
 	List<Post> getAllPost();
 		
 	// userId로 Post 가져오기
-	Post getPostByUserId(String userId);
+	List<Post> getPostByUserId(String userId);
 		
 	// Post 추가하기
 	void insertPost(Post Post);
@@ -19,5 +19,5 @@ public interface PostMapper {
 	void modPost(Post Post);
 		
 	// userId로 Post 삭제하기
-	void removePost(String userId);
+	void removePost(int post_id);
 }

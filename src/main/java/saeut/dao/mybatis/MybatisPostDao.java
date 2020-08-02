@@ -21,7 +21,7 @@ public class MybatisPostDao implements PostDao{
 	}
 
 	@Override
-	public Post getPostByUserId(String userId) {
+	public List<Post> getPostByUserId(String userId) {
 		return postMapper.getPostByUserId(userId);
 	}
 
@@ -36,8 +36,8 @@ public class MybatisPostDao implements PostDao{
 	}
 
 	@Override
-	public void removePost(String userId) {
-		postMapper.removePost(userId);
+	public void removePost(int post_id) {
+		postMapper.removePost(post_id);
 		
 	}
 

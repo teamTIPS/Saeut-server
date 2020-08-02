@@ -4,14 +4,13 @@
   <cache />
   
   <select id="getAllCheckList" resultType="CheckList">
-  	select cert_name, cert_id
-  	from Certificate
+  	select name, checked, cert_id
+  	from CheckList
   </select>
   
   <select id="getTop6CheckList" resultType="CheckList">
-  	select cert_name, cert_id, count(cert_name)
+  	select name, checked, cert_id
   	from CheckList
-  	group by cert_name
   	limit 6
   </select> <!-- 대충써논것..다시 수정하기 -->
   

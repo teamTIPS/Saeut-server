@@ -24,7 +24,7 @@ public class CheckList implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isChecked() {
+	public boolean getChecked() {
 		return checked;
 	}
 	public void setChecked(boolean checked) {

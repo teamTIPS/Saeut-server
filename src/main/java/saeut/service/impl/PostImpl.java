@@ -36,7 +36,7 @@ public class PostImpl implements PostFacade {
 	}
 
 	@Override
-	public Post getPostByUserId(String userId) {
+	public List<Post> getPostByUserId(String userId) {
 		return postDao.getPostByUserId(userId);
 	}
 
@@ -51,8 +51,8 @@ public class PostImpl implements PostFacade {
 	}
 
 	@Override
-	public void removePost(String userId) {
-		postDao.removePost(userId);
+	public void removePost(int post_id) {
+		postDao.removePost(post_id);
 	}
 	
 	/* CheckList  */

@@ -4,13 +4,13 @@
   <cache />
   
 	  <select id="getCertificateByUserId" resultType="Certificate">
-	    select cert_id, cert_name, cert_date, cert_inst, id 
+	    select cert_id, cert_name, cert_date, cert_inst, id, verify
 		from Certificate
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllCertificate" resultType="Certificate">
-	    select cert_id, cert_name, cert_date, cert_inst, id 
+	    select cert_id, cert_name, cert_date, cert_inst, id, verify
 		from Certificate
 	  </select>
 	  
@@ -22,14 +22,12 @@
    	  <update id="modCertificate"  parameterType="Certificate">
 	     update Certificate
 	     set cert_name=#{cert_name}, cert_date=#{cert_date}, cert_inst=#{cert_inst}, id=#{id}
-	     where
-	     cert_id=#{cert_id}
+	     where cert_id=#{cert_id}
    	  </update> 
      
       <delete id="removeCertificate"  parameterType="Integer">
 	   delete from Certificate
-	   where
-	   cert_id=#{cert_id}
+	   where cert_id=#{cert_id}
 	  </delete>
 	  
   

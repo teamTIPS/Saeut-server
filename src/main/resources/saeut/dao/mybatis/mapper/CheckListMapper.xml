@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="saeut.dao.mybatis.mapper.CheckListMapper">
+  <cache />
+  
+  <select id="getAllCheckList" resultType="CheckList">
+  	select cert_name, cert_id
+  	from Certificate
+  </select>
+  
+  <select id="getTop6CheckList" resultType="CheckList">
+  	select cert_name, cert_id, count(cert_name)
+  	from CheckList
+  	group by cert_name
+  	limit 6
+  </select> <!-- 대충써논것..다시 수정하기 -->
+  
+<!--   
+  <insert id= "">
+  사용자가 체크한거 인서트 
+  </insert> -->
+ </mapper>

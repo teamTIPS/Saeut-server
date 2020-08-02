@@ -22,8 +22,7 @@
    	  <update id="modDemand"  parameterType="Demand">
 	     update Demand
 	     set rank=#{rank}, score=#{score}, description=#{description}, type=#{type}
-	     where
-	     id=#{id}
+	     where id=#{id}
    	  </update> 
      
       <delete id="removeDemand"  parameterType="String">

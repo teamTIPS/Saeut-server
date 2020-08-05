@@ -16,19 +16,20 @@ import saeut.domain.Certificate;
 import saeut.service.facade.MyPageFacade;
 
 @RestController
+@RequestMapping("/signon")
 public class SignonController {
 
 	@Autowired
 	private MyPageFacade myPageFacade;
 	
 	
-	@RequestMapping(value = "/signon.do/{id}", method = RequestMethod.POST)
-	public ResponseEntity<String> signOn (@PathVariable("id") String id, @PathVariable("password") String password) {
+	@RequestMapping(value = "/signon.do", method = RequestMethod.POST)
+	public ResponseEntity<String> signOn (@RequestBody Account account) {
 		
 		ResponseEntity<String>  resEntity = null;
-		Account account = myPageFacade.getAccountByUserIdAndPassword(id, password);
+		Account account_result = myPageFacade.getAccountByUserIdAndPassword(account);
 	
-		if (account == null) { // 로그인 실패 시 false 반환 
+		if (account_result == null) { // 로그인 실패 시 false 반환 
 			try {
 				resEntity =new ResponseEntity("false", HttpStatus.OK);
 			}catch(Exception e) {

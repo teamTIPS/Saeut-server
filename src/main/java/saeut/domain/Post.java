@@ -10,7 +10,7 @@ import java.util.Date; //import java.util.sql일수도
 public class Post implements Serializable{
 
 	private int post_id; //sequence
-	private int account_id; // (FK) account 클래스의 id
+	private String account_id; // (FK) account 클래스의 id
 	private String title; //게시물 제목
 	private Date post_date; //게시글 추가한 날짜 
 	private String contents; // 게시글 내용
@@ -26,10 +26,10 @@ public class Post implements Serializable{
 	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
-	public int getAccount_id() {
+	public String getAccount_id() {
 		return account_id;
 	}
-	public void setAccount_id(int account_id) {
+	public void setAccount_id(String account_id) {
 		this.account_id = account_id;
 	}
 	public String getTitle() {

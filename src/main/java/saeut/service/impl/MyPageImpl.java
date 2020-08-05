@@ -40,8 +40,8 @@ public class MyPageImpl implements MyPageFacade{
 	}
 
 	@Override
-	public Account getAccountByUserIdAndPassword(String id, String password) {
-		return accountDao.getAccountByUserIdAndPassword(id, password);
+	public Account getAccountByUserIdAndPassword(Account account) {
+		return accountDao.getAccountByUserIdAndPassword(account);
 	};
 	
 	@Override

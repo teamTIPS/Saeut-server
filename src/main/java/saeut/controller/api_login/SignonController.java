@@ -30,16 +30,17 @@ public class SignonController {
 	
 		if (account == null) { // 로그인 실패 시 false 반환 
 			try {
-				resEntity = new ResponseEntity("true", HttpStatus.OK);
+				resEntity =new ResponseEntity("false", HttpStatus.OK);
 			}catch(Exception e) {
 				resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
 			}
 		}else {  //로그인 성공하면 true 반환 
 			try {
-				resEntity =new ResponseEntity("false", HttpStatus.OK);
+				resEntity = new ResponseEntity("true", HttpStatus.OK);
 			}catch(Exception e) {
 				resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
-		}}
+			}
+		}
 		return resEntity;
 	}	
 }

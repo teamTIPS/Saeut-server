@@ -13,7 +13,7 @@ public interface MyPageFacade {
 	/* Account */
 	/////////////////////////////////////////////////////////////////////////
 	Account getAccountByUserId(String id);
-	Account getAccountByUserIdAndPassword(String id, String password);		
+	Account getAccountByUserIdAndPassword(Account account);		
 	List<Account> getAllAccount();
 	void insertAccount(Account account);
 	void modAccount(Account account);

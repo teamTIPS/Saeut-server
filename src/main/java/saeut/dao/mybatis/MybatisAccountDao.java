@@ -22,8 +22,8 @@ public class MybatisAccountDao implements AccountDao {
 	}
 	
 	@Override
-	public Account getAccountByUserIdAndPassword(String id, String password) {
-		return accountMapper.getAccountByUserIdAndPassword(id, password);
+	public Account getAccountByUserIdAndPassword(Account account) {
+		return accountMapper.getAccountByUserIdAndPassword(account);
 	};
 	
 	@Override

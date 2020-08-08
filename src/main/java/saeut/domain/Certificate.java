@@ -16,6 +16,7 @@ public class Certificate implements Serializable {
 	private String cert_inst; //발행 기관 이름 
 	private String id; // (FK) Account userId 
 	private boolean verify; // 자격증 진위 여부를 검증 default:false
+	private int tag; // 아동(0), 노인(1), 장애(2), 기타(3)
 
 	public String getCert_id() {
 		return cert_id;
@@ -53,5 +54,12 @@ public class Certificate implements Serializable {
 	public void setVerify(boolean verify) {
 		this.verify = verify;
 	}
+	public int getTag() {
+		return tag;
+	}
+	public void setTag(int tag) {
+		this.tag = tag;
+	}
+	
 	
 }

@@ -24,6 +24,7 @@ public interface MyPageFacade {
 	/////////////////////////////////////////////////////////////////////////	
 	List<Certificate> getAllCertificate();
 	List<Certificate> getCertificateByUserId(String userId);
+	List<Certificate> getCertificateByTag(int tag);
 	void insertCertificate(Certificate certificate);
 	void modCertificate(Certificate certificate);
 	void removeCertificate(int cert_id);

@@ -82,6 +82,11 @@ public class MyPageImpl implements MyPageFacade{
 	public List<Certificate> getCertificateByUserId(String userId) {
 		return certificateDao.getCertificateByUserId(userId);
 	}
+	
+	@Override
+	public List<Certificate> getCertificateByTag(int tag) {
+		return certificateDao.getCertificateByTag(tag);
+	}
 
 	@Override
 	public void insertCertificate(Certificate certificate) {
@@ -156,6 +161,7 @@ public class MyPageImpl implements MyPageFacade{
 		supplyDao.removeSupply(userId);
 	}
 
+	
 	
 
 	

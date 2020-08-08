@@ -39,9 +39,12 @@ public class MybatisCertificateDao implements CertificateDao {
 	@Override
 	public void removeCertificate(int cert_id) {
 		certificateMapper.removeCertificate(cert_id);
+	}
+
+	@Override
+	public List<Certificate> getCertificateByTag(int tag) throws DataAccessException {
+		return certificateMapper.getCertificateByTag(tag);
 	};
-	
-	
 
 	
 }

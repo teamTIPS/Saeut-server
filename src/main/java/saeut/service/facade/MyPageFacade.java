@@ -15,6 +15,7 @@ public interface MyPageFacade {
 	Account getAccountByUserId(String id);
 	Account getAccountByUserIdAndPassword(Account account);		
 	List<Account> getAllAccount();
+	String getNicknameByUserID(String id);
 	void insertAccount(Account account);
 	void modAccount(Account account);
 	void removeAccount(String id);

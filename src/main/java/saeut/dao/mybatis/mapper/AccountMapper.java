@@ -15,6 +15,9 @@ public interface AccountMapper {
 	// userId로 Account 가져오기
 	Account getAccountByUserId(String userId);
 	
+	// userID로 NickName 가져오기
+	String getNicknameByUserID(String userId);
+	
 	// Account 추가하기
 	void insertAccount(Account account);
 	

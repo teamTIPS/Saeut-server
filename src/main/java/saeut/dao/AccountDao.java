@@ -17,6 +17,9 @@ public interface AccountDao {
 	// 모든 Account 가져오기
 	List<Account> getAllAccount() throws DataAccessException;
 	
+	// userID로 Nickname 가져오기
+	String getNicknameByUserID(String id) throws DataAccessException;
+	
 	// Account 추가하기
 	void insertAccount(Account account) throws DataAccessException;
 		

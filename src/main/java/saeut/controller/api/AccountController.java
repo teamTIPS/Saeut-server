@@ -42,6 +42,14 @@ public class AccountController {
 		return new ResponseEntity(accounts,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/nick/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Account> findNickname (@PathVariable("id") String id) {
+		
+		String nickname = myPageFacade.getNicknameByUserID(id);
+		
+		return new ResponseEntity(nickname,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<String> addArticle (@RequestBody Account account) {
 		ResponseEntity<String>  resEntity = null;

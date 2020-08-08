@@ -20,6 +20,10 @@
 		from Account
 	  </select>
 	  
+	  <select id="getNicknameByUserID" parameterType="String" resultType="String">
+	    select nickname from Account where id=#{id};
+	  </select>
+	  
 	   <insert id="insertAccount"  parameterType="Account">
 		 insert into Account(id, password, name, nickname, phone, pic, type)
 		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone}, 

@@ -45,5 +45,11 @@ public class MybatisAccountDao implements AccountDao {
 	public void removeAccount(String userId) {
 		accountMapper.removeAccount(userId);
 	}
+
+	@Override
+	public String getNicknameByUserID(String userId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return accountMapper.getNicknameByUserID(userId);
+	}
 	
 }

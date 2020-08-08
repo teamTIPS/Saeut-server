@@ -50,6 +50,12 @@ public class MyPageImpl implements MyPageFacade{
 	}
 	
 	@Override
+	public String getNicknameByUserID(String id) {
+		// TODO Auto-generated method stub
+		return accountDao.getNicknameByUserID(id);
+	}
+	
+	@Override
 	public void insertAccount(Account account) {
 		accountDao.insertAccount(account);
 	};
@@ -149,6 +155,8 @@ public class MyPageImpl implements MyPageFacade{
 	public void removeSupply(String userId) {
 		supplyDao.removeSupply(userId);
 	}
+
+	
 
 	
 }

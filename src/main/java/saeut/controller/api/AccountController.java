@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,11 +43,13 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/nick/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Account> findNickname (@PathVariable("id") String id) {
+	public ResponseEntity<String> findNickname (@PathVariable("id") String id) {
 		
 		String nickname = myPageFacade.getNicknameByUserID(id);
+		 HttpHeaders responseHeaders = new HttpHeaders();
+		 responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
-		return new ResponseEntity(nickname,HttpStatus.OK);
+		return new ResponseEntity(nickname,responseHeaders, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

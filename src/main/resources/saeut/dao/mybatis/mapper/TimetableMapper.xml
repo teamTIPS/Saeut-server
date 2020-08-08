@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="saeut.dao.mybatis.mapper.TimetableMapper">
+  <cache />
+  
+	   <select id="getTimeListById" parameterType="String" resultType="Timetable"> 
+	    select id, day, start_time, due_time, time_id
+		from Timetable 
+		where id = #{id}
+	  </select>
+	  
+	   <insert id="insertTimetable"  parameterType="Timetable">
+		 insert into Timetable(id, day, start_time, due_time, time_id)
+		 values(#{id}, #{day}, #{start_time}, #{due_time}, #{time_id})
+		</insert>
+	
+   	  <update id="modTimetable"  parameterType="Timetable">
+	     update Supply
+	     set id=#{id}, day=#{day}, start_time=#{start_time}, due_time=#{due_time}, time_id=#{time_id}
+   	  </update> 
+     
+      <delete id="removeTimetableById"  parameterType="String">
+	   delete from Timetable
+	   where id=#{id}
+	  </delete>
+	  
+  
+</mapper>

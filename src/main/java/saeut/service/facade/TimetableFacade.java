@@ -7,7 +7,7 @@ import saeut.domain.Timetable;
 public interface TimetableFacade {
 
 /////////////////////////////////////////////////////////////////////////
-/*  돌봄 요청자 또는 제공자의 개인 시간표를 설정 */
+/*  돌봄 요청자 또는 제공자의 개인 시간표 n개를 설정 */
 /////////////////////////////////////////////////////////////////////////
 	// userId로 Timetable 가져오기
 	List<Timetable> getTimeListById(String id);

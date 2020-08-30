@@ -1,5 +1,7 @@
 package saeut.controller.api_login;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class SignonController {
 	private MyPageFacade myPageFacade;
 	
 	
-	@PostMapping("/api/members")   
+	@PostMapping("/api/signin")   
 	public ResponseEntity<String> signIn (@RequestBody LoginInfo loginInfo) { 
 		//아이디 패스워드만 받는 객체 생성. 
 		//근데 의문.. 왜로그인 여부만 판단. 안드에서 그럼 t/f로 다시 어카운트 정보를 리드 하는거야?? 
@@ -46,6 +48,20 @@ public class SignonController {
 		return resEntity;
 	}	
 	
+	@PostMapping("/api/signup")   
+	public ResponseEntity<String> newMember(@RequestBody @Valid Account account) { //회원가입
+		
+		ResponseEntity<String>  resEntity = null;
+		
+		try {
+			myPageFacade.insertAccount(account);
+			
+		}catch(Exception e) { //DuplicateMemberException
+			
+			
+		}
+		return resEntity;
+	}
 	
 
 	

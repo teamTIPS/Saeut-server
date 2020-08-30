@@ -66,7 +66,7 @@ public class AccountController {
 	}	
 	
 	//수정하기
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
 	public ResponseEntity<String> modArticle (@RequestBody Account account) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -80,7 +80,7 @@ public class AccountController {
 	}
 	
 	//삭제하기
-	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeArticle (@PathVariable("id") String id) {
 		ResponseEntity<String>  resEntity = null;
 		try {

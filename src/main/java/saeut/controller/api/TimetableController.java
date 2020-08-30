@@ -42,7 +42,7 @@ public class TimetableController {
 		return resEntity;
 	}	
 	
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
 	public ResponseEntity<String> modPost (@RequestBody Timetable timetable) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -55,7 +55,7 @@ public class TimetableController {
 		return resEntity;
 	}
 	
-	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeArticle (@PathVariable("id")String id) {
 		ResponseEntity<String>  resEntity = null;
 		try {

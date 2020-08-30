@@ -54,7 +54,7 @@ public class CertificateController {
 	}	
 	
 	//수정하기
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
 	public ResponseEntity<String> modCertificate (@RequestBody Certificate certificate) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -68,7 +68,7 @@ public class CertificateController {
 	}
 	
 	//삭제하기
-	@RequestMapping(value = "/remove/{cert_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove/{cert_id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeCertificate (@PathVariable("cert_id") int cert_id) {
 		ResponseEntity<String>  resEntity = null;
 		try {

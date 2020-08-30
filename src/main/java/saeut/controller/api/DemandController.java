@@ -55,7 +55,7 @@ public class DemandController {
 	}	
 	
 	//수정하기
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
 	public ResponseEntity<String> modDemand (@RequestBody Demand demand) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -69,7 +69,7 @@ public class DemandController {
 	}
 	
 	//삭제하기
-	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeDemand (@PathVariable("id") String id) {
 		ResponseEntity<String>  resEntity = null;
 		try {

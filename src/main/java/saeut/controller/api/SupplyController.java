@@ -57,7 +57,7 @@ public class SupplyController {
 	}	
 	
 	//수정하기
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
 	public ResponseEntity<String> modSupply (@RequestBody Supply supply) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -71,7 +71,7 @@ public class SupplyController {
 	}
 	
 	//삭제하기
-	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeSupply (@PathVariable("id") String id) {
 		ResponseEntity<String>  resEntity = null;
 		try {

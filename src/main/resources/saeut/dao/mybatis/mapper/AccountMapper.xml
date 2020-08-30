@@ -44,5 +44,11 @@
 	   id=#{id}
 	  </delete>
 	  
+	  <select id="isDuplicated" resultType="int">
+	    select COUNT(*)
+		from Account 
+		where id = #{id}
+	  </select>
+	  
   
   </mapper>

@@ -3,11 +3,13 @@ package saeut.dao.mybatis;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import saeut.dao.TimetableDao;
 import saeut.dao.mybatis.mapper.TimetableMapper;
 import saeut.domain.Timetable;
 
+@Repository
 public class MybatisTimetableDao implements TimetableDao{
 
 	@Autowired

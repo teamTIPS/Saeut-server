@@ -13,6 +13,9 @@ public interface AccountMapper {
 	// userId랑 password로 Account 가져오기
 	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);	
 	
+	// userID로 중복 검사하기
+	int isDuplicated(LoginInfo loginInfo);
+	
 	// userId로 Account 가져오기
 	Account getAccountByUserId(String userId);
 	
@@ -27,5 +30,5 @@ public interface AccountMapper {
 	
 	// userID로 Account 삭제하기
 	void removeAccount(String userId);
-	
+
 }

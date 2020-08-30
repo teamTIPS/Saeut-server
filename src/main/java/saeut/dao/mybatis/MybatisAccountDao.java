@@ -28,6 +28,12 @@ public class MybatisAccountDao implements AccountDao {
 //	};
 	
 	@Override
+	public int isDuplicated(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
+		return accountMapper.isDuplicated(loginInfo);
+	}
+	
+	@Override
 	public Account getAccountByUserIdAndPassword(LoginInfo loginInfo) {
 		return accountMapper.getAccountByUserIdAndPassword(loginInfo);
 	};
@@ -57,5 +63,7 @@ public class MybatisAccountDao implements AccountDao {
 		// TODO Auto-generated method stub
 		return accountMapper.getNicknameByUserID(userId);
 	}
+
+	
 	
 }

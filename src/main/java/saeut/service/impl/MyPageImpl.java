@@ -51,6 +51,13 @@ public class MyPageImpl implements MyPageFacade{
 		return accountDao.getAccountByUserIdAndPassword(loginInfo);
 	};
 	
+	@Override
+	public int isDuplicated(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
+		return accountDao.isDuplicated(loginInfo);
+	}
+
+	
 	
 	@Override
 	public List<Account> getAllAccount(){
@@ -169,6 +176,7 @@ public class MyPageImpl implements MyPageFacade{
 		supplyDao.removeSupply(userId);
 	}
 
+	
 	
 	
 

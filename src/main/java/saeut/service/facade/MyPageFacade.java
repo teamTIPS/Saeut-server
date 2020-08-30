@@ -20,6 +20,7 @@ public interface MyPageFacade {
 	void insertAccount(Account account);
 	void modAccount(Account account);
 	void removeAccount(String id);
+	int isDuplicated(LoginInfo loginInfo);
 	/////////////////////////////////////////////////////////////////////////
 	/* Certificate */
 	/////////////////////////////////////////////////////////////////////////	

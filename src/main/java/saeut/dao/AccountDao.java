@@ -16,6 +16,9 @@ public interface AccountDao {
 //	Account getAccountByUserIdAndPassword(Account account);		
 	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);		
 	
+	// userID로 중복 체크하기
+	int isDuplicated(LoginInfo loginInfo);
+	
 	// 모든 Account 가져오기
 	List<Account> getAllAccount() throws DataAccessException;
 	

@@ -48,21 +48,18 @@ public class SignonController {
 		return resEntity;
 	}	
 	
-	@PostMapping("/api/signup")   
-	public ResponseEntity<String> newMember(@RequestBody @Valid Account account) { //회원가입
-		
+	@PostMapping("/api/checkid")
+	public ResponseEntity<String> isDuplicated (@RequestBody LoginInfo loginInfo) { 
+		//아이디 패스워드만 받는 객체 생성. 	
+		//근데 의문.. 왜로그인 여부만 판단. 안드에서 그럼 t/f로 다시 어카운트 정보를 리드 하는거야?? 
 		ResponseEntity<String>  resEntity = null;
-		
-		try {
-			myPageFacade.insertAccount(account);
-			
-		}catch(Exception e) { //DuplicateMemberException
-			
-			
-		}
+		int account_result = myPageFacade.isDuplicated(loginInfo);
+		if (account_result == 1) // 중복된 아이디 존재 시 false 반환 
+			resEntity = ResponseEntity.status(HttpStatus.OK).body("false");			
+		else  // 중복된 아이디가 없을 시 true 반환
+			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");
 		return resEntity;
-	}
-	
+	}	
 
 	
 	

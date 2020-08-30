@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import saeut.dao.AccountDao;
 import saeut.dao.mybatis.mapper.AccountMapper;
 import saeut.domain.Account;
+import saeut.domain.LoginInfo;
 
 @Repository
 public class MybatisAccountDao implements AccountDao {
@@ -21,9 +22,14 @@ public class MybatisAccountDao implements AccountDao {
 		return accountMapper.getAccountByUserId(id);
 	}
 	
+//	@Override
+//	public Account getAccountByUserIdAndPassword(Account account) {
+//		return accountMapper.getAccountByUserIdAndPassword(account);
+//	};
+	
 	@Override
-	public Account getAccountByUserIdAndPassword(Account account) {
-		return accountMapper.getAccountByUserIdAndPassword(account);
+	public Account getAccountByUserIdAndPassword(LoginInfo loginInfo) {
+		return accountMapper.getAccountByUserIdAndPassword(loginInfo);
 	};
 	
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import saeut.domain.Account;
 import saeut.domain.Certificate;
 import saeut.domain.Demand;
+import saeut.domain.LoginInfo;
 import saeut.domain.Supply;
 
 public interface MyPageFacade {
@@ -13,7 +14,7 @@ public interface MyPageFacade {
 	/* Account */
 	/////////////////////////////////////////////////////////////////////////
 	Account getAccountByUserId(String id);
-	Account getAccountByUserIdAndPassword(Account account);		
+	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);		
 	List<Account> getAllAccount();
 	String getNicknameByUserID(String id);
 	void insertAccount(Account account);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import saeut.domain.Account;
+import saeut.domain.LoginInfo;
 
 public interface AccountDao {
 
@@ -12,7 +13,8 @@ public interface AccountDao {
 	Account getAccountByUserId(String id) throws DataAccessException;
 	
 	// userId랑 password로 Account 가져오기
-	Account getAccountByUserIdAndPassword(Account account);		
+//	Account getAccountByUserIdAndPassword(Account account);		
+	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);		
 	
 	// 모든 Account 가져오기
 	List<Account> getAllAccount() throws DataAccessException;

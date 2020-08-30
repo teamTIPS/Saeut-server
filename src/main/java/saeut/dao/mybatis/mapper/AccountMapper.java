@@ -3,6 +3,7 @@ package saeut.dao.mybatis.mapper;
 import java.util.List;
 
 import saeut.domain.Account;
+import saeut.domain.LoginInfo;
 
 public interface AccountMapper {
 
@@ -10,7 +11,7 @@ public interface AccountMapper {
 	List<Account> getAllAccount();
 	
 	// userId랑 password로 Account 가져오기
-	Account getAccountByUserIdAndPassword(Account account);	
+	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);	
 	
 	// userId로 Account 가져오기
 	Account getAccountByUserId(String userId);

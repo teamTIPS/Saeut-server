@@ -14,6 +14,7 @@ import saeut.dao.SupplyDao;
 import saeut.domain.Account;
 import saeut.domain.Certificate;
 import saeut.domain.Demand;
+import saeut.domain.LoginInfo;
 import saeut.domain.Supply;
 import saeut.service.facade.MyPageFacade;
 
@@ -39,10 +40,17 @@ public class MyPageImpl implements MyPageFacade{
 		return accountDao.getAccountByUserId(id);
 	}
 
+//	@Override
+//	public Account getAccountByUserIdAndPassword(Account account) {
+//		return accountDao.getAccountByUserIdAndPassword(account);
+//	};
+//	
+	
 	@Override
-	public Account getAccountByUserIdAndPassword(Account account) {
-		return accountDao.getAccountByUserIdAndPassword(account);
+	public Account getAccountByUserIdAndPassword(LoginInfo loginInfo) {
+		return accountDao.getAccountByUserIdAndPassword(loginInfo);
 	};
+	
 	
 	@Override
 	public List<Account> getAllAccount(){

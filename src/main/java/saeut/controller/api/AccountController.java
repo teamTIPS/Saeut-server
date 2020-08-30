@@ -34,12 +34,24 @@ public class AccountController {
 		return new ResponseEntity(account,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<List<Account>> findAllAccount () {
+	@RequestMapping(value = "/{type}", method = RequestMethod.GET)
+	public ResponseEntity<List<Account>> findAccountByType(@PathVariable("type") int type) {
 		
 		List<Account> accounts = myPageFacade.getAllAccount();
+		List<Account> result = null;
 		
-		return new ResponseEntity(accounts,HttpStatus.OK);
+		for(int i = 0; i < accounts.size(); i++) {
+			if(accounts.get(i).getType() == type) {
+				result.add(i, accounts.get(i));
+			}else {
+				continue;
+			}
+		}
+		if(result == null) {
+			//return new ResponseEntity("typeError",HttpStatus.OK));
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(result);
 	}
 	
 	@RequestMapping(value = "/nick/{id}", method = RequestMethod.GET)

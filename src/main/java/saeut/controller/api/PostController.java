@@ -34,10 +34,14 @@ public class PostController {
 		return new ResponseEntity(posts,HttpStatus.OK);
 	}
 	
+	
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findAllPost () {
 		
 		List<Post> posts = postFacade.getAllPost();
+	
+		
 		
 		return new ResponseEntity(posts,HttpStatus.OK);
 	}

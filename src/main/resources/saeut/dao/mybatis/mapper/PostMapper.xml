@@ -4,26 +4,27 @@
   <cache />
   
   <select id="getAllPost" resultType="Post">
-  	select post_id, account_id, title, post_date, contents, start_date, due_date, birth, address1, address2
+  	select post_id, account_id, title, post_date, contents, start_date, due_date, birth, address1, address2, status
   	from Post
   </select>
   
    <select id="getPostByUserId" parameterType="String">
-  	select post_id, account_id, title, post_date, contents, start_date, due_date, birth, address1, address2
+  	select post_id, account_id, title, post_date, contents, start_date, due_date, birth, address1, address2,status
   	from Post
   	where id=#{account_id}
   </select>
   
   <insert id="insertPost" parameterType="Post">
   	insert into Post(post_id, account_id, title, post_date, contents, 
-  					start_date, due_date, birth, address1, address2)
+  					start_date, due_date, birth, address1, address2, status)
   	values(#{post_id}, #{account_id},#{title},#{post_date},#{contents},
-  			#{start_date},#{due_date}, #{birth},#{address1},#{address2})
+  			#{start_date},#{due_date}, #{birth},#{address1},#{address2}, #{status])
   </insert>
   
   <update id="modPost"  parameterType="Demand">
 	     update Demand
-	     set 
+	     set title=#{title}, contents=#{contents}, start_date=#{start_date}, #{due_date},
+	     			birth=#{birth}, address1=#{address1}, address2=#{address2}, status=#{status} 
 	     where post_id=#{post_id}
   </update> 
      

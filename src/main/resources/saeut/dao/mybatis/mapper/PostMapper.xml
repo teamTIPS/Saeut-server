@@ -21,8 +21,8 @@
   			#{start_date},#{due_date}, #{birth},#{address1},#{address2}, #{status])
   </insert>
   
-  <update id="modPost"  parameterType="Demand">
-	     update Demand
+  <update id="modPost"  parameterType="Post">
+	     update Post
 	     set title=#{title}, contents=#{contents}, start_date=#{start_date}, #{due_date},
 	     			birth=#{birth}, address1=#{address1}, address2=#{address2}, status=#{status} 
 	     where post_id=#{post_id}

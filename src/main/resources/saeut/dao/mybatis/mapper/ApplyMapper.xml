@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.ApplyMapper">
+  <cache />
+  
+  <select id="getAllApply" resultType="Apply">
+  	select post_id, account_id, introduce
+  	from Apply
+  </select>
+  
+   <select id="getApplytByUserId" parameterType="String">
+  	select post_id, account_id, introduce
+  	from Apply
+  	where account_id=#{account_id}
+  </select>
+  
+  <select id="getApplytByPostId" parameterType="String">
+  	select post_id, account_id, introduce
+  	from Apply
+  	where post_id=#{post_id}
+  </select>
+  
+  <insert id="insertApply" parameterType="Apply">
+  	insert into Apply(post_id, account_id, introduce)
+  	values(#{post_id}, #{account_id},#{introduce})
+  </insert>
+     
+  <delete id="removeApply"  parameterType="String">
+	   delete from Apply
+	   where post_id=#{post_id}
+  </delete>
+  	  
+  
+  </mapper>

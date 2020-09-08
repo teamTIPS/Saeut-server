@@ -4,24 +4,24 @@
   <cache />
   
 	   <select id="getSupplyByUserId" resultType="Supply">
-	    select rank, score, description, type, id 
+	    select ranks, score, description, type, id 
 		from Supply 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllSupply" resultType="Supply">
-	    select rank, score, description, type, id  
+	    select ranks, score, description, type, id  
 		from Supply
 	  </select>
 	  
 	   <insert id="insertSupply"  parameterType="Supply">
-		 insert into Supply(rank, score, description, type, id)
-		 values(#{rank}, #{score}, #{description}, #{type}, #{id})
+		 insert into Supply(ranks, score, description, type, id)
+		 values(#{ranks}, #{score}, #{description}, #{type}, #{id})
 		</insert>
 	
    	  <update id="modSupply"  parameterType="Supply">
 	     update Supply
-	     set rank=#{rank}, score=#{score}, description=#{description}, type=#{type}
+	     set ranks=#{ranks}, score=#{score}, description=#{description}, type=#{type}
 	     where
 	     id=#{id}
    	  </update> 

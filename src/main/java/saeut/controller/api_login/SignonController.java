@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.Account;
 import saeut.domain.LoginInfo;
+import saeut.security.AuthenticationRequest;
+import saeut.security.AuthenticationResponse;
+import saeut.security.CommonException;
+import saeut.security.Jwt;
+import saeut.security.JwtComponent;
 import saeut.service.facade.MyPageFacade;
+
 
 @RestController
 public class SignonController {  
@@ -22,6 +28,8 @@ public class SignonController {
 //	
 	@Autowired
 	private MyPageFacade myPageFacade;
+	@Autowired
+	private JwtComponent jwtUtil;
 	
 	
 	@PostMapping("/api/signin")   
@@ -46,7 +54,14 @@ public class SignonController {
 			}
 		}
 		return resEntity;
-	}	
+	}
+	
+	@RequestMapping( value = "/api/test", method = RequestMethod.POST)
+	   public ResponseEntity<?> authenticate (@RequestBody AuthenticationRequest authenticationRequest) throws CommonException, Exception{
+	      
+	      Jwt token = this.jwtUtil.makeJwt(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+	      return ResponseEntity.ok(  new AuthenticationResponse(token));
+	   }
 	
 	@PostMapping("/api/checkid")
 	public ResponseEntity<String> isDuplicated (@RequestBody LoginInfo loginInfo) { 

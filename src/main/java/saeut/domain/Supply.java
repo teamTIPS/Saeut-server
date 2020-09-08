@@ -8,17 +8,17 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Supply implements Serializable{
 	
-	private int rank;
+	private int ranks;
 	private float score;
 	private String description;
 	private int type; // (FK)
 	private String id; // (FK) - PK
 	
 	public int getRank() {
-		return rank;
+		return ranks;
 	}
 	public void setRank(int rank) {
-		this.rank = rank;
+		this.ranks = rank;
 	}
 	public float getScore() {
 		return score;

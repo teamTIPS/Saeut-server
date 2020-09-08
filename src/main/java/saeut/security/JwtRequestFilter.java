@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,11 +27,7 @@ import saeut.security.JwtComponent.TOKEN_TYPE;
 public class JwtRequestFilter extends OncePerRequestFilter{
 
 	@Autowired
-	private CustomUserDetailService customUserService;
-	
-	@Autowired
-	private JwtComponent jwtComponent;
-	
+	private JwtComponent jwtComponent;	
 	
 	@Value("${jwt.get.access.token.url}")
 	private String accessTokenUrl;
@@ -73,7 +70,7 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 		if( username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			
 			// 사용자 아이디로 해당 정보가 있는지 확인함
-			UserDetails userDetails = this.customUserService.loadUserByUsername(username);
+			UserDetails userDetails = this.jwtComponent.getUserDetailService().loadUserByUsername(username);
 			
 			// 토큰의 유효성을 확인
 			if( this.jwtComponent.validateToken( jwt, userDetails, tokenType)) {

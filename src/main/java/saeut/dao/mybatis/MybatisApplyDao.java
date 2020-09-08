@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import saeut.dao.ApplyDao;
 import saeut.dao.mybatis.mapper.ApplyMapper;
 import saeut.domain.Apply;
 
+@Repository
 public class MybatisApplyDao implements ApplyDao{
 
 	@Autowired

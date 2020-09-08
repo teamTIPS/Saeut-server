@@ -20,6 +20,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
           classpath:applicationContext.xml
+          classpath:security-context.xml
           classpath:dataAccessContext-mybatis.xml 
    </param-value>
   </context-param>

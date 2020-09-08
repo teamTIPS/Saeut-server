@@ -4,24 +4,24 @@
   <cache />
   
 	  <select id="getDemandByUserId" resultType="Demand">
-	    select rank, score, description, type, id 
+	    select ranks, score, description, type, id 
 		from Demand 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllDemand" resultType="Demand">
-	    select rank, score, description, type, id  
+	    select ranks, score, description, type, id  
 		from Demand
 	  </select>
 	  
 	   <insert id="insertDemand"  parameterType="Demand">
-		 insert into Demand(rank, score, description, type, id)
-		 values(#{rank}, #{score}, #{description}, #{type}, #{id})
+		 insert into Demand(ranks, score, description, type, id)
+		 values(#{ranks}, #{score}, #{description}, #{type}, #{id})
 		</insert>
 	
    	  <update id="modDemand"  parameterType="Demand">
 	     update Demand
-	     set rank=#{rank}, score=#{score}, description=#{description}, type=#{type}
+	     set rank=#{ranks}, score=#{score}, description=#{description}, type=#{type}
 	     where id=#{id}
    	  </update> 
      

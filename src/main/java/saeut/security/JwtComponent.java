@@ -8,7 +8,9 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +31,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
  * 
  */
 @Component
+@PropertySource("classpath:jwt.properties")
 public class JwtComponent {
 
 	private final String ACCESS_SECRET_KEY;
@@ -40,7 +43,12 @@ public class JwtComponent {
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
+	@Qualifier("userDetailsService")
 	private CustomUserDetailService myUserDetailService;
+	
+	public CustomUserDetailService getUserDetailService() {
+		return this.myUserDetailService;
+	}
 	
 	/**
 	 *	토큰 초기값 세팅

@@ -201,22 +201,27 @@
 		<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
+        <dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-crypto</artifactId>
+    		<version>4.2.4.RELEASE</version>
+	</dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -228,8 +233,21 @@
            <artifactId>lombok</artifactId> 
            <version>1.16.16</version> 
         </dependency>
-		
-		
+        <dependency>
+        	<groupId>javax.xml.bind</groupId> 
+        	<artifactId>jaxb-api</artifactId> 
+        	<version>2.3.1</version> 
+        </dependency> 
+        <dependency> 
+        	<groupId>com.sun.xml.bind</groupId> 
+        	<artifactId>jaxb-core</artifactId>
+         	<version>2.3.0.1</version> 
+         </dependency> 
+         <dependency> 
+         	<groupId>com.sun.xml.bind</groupId> 
+         	<artifactId>jaxb-impl</artifactId> 
+         	<version>2.3.1</version> 
+         </dependency>
 		
 
 	</dependencies>

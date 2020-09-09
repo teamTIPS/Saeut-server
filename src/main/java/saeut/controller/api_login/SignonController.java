@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.Account;
 import saeut.domain.LoginInfo;
-import saeut.security.AuthenticationRequest;
 import saeut.security.AuthenticationResponse;
 import saeut.security.CommonException;
 import saeut.security.Jwt;
@@ -22,6 +21,7 @@ import saeut.service.facade.MyPageFacade;
 
 
 @RestController
+@RequestMapping("/signon")
 public class SignonController {  
 //	로그인 및 회원가입 컨트롤러 
 //	sign in : 로그인 , sign up : 회원가입
@@ -32,41 +32,34 @@ public class SignonController {
 	private JwtComponent jwtUtil;
 	
 	
-	@PostMapping("/api/signin")   
-	public ResponseEntity<String> signIn (@RequestBody LoginInfo loginInfo) { 
-		//아이디 패스워드만 받는 객체 생성. 
-		//근데 의문.. 왜로그인 여부만 판단. 안드에서 그럼 t/f로 다시 어카운트 정보를 리드 하는거야?? 
-		ResponseEntity<String>  resEntity = null;
+	@PostMapping("/signon")   
+	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
+		ResponseEntity<AuthenticationResponse> resEntity = null;
 		Account account_result = myPageFacade.getAccountByUserIdAndPassword(loginInfo);
 	
-		if (account_result == null) { // 로그인 실패 시 false 반환 
+		if (account_result == null) { 
+				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}else {  
 			try { 
-				//resEntity = new ResponseEntity("false", HttpStatus.OK);
-				resEntity = ResponseEntity.status(HttpStatus.OK).body("false");
+				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송
+				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
+				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token));
 			}catch(Exception e) {
-				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body((e.getMessage()));
-			}
-		}else {  //로그인 성공하면 true 반환 
-			try { 
-				resEntity = ResponseEntity.status(HttpStatus.OK).body("true");
-			}catch(Exception e) {
-				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body((e.getMessage()));
+				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			}
 		}
 		return resEntity;
 	}
-	
-	@RequestMapping( value = "/api/test", method = RequestMethod.POST)
-	   public ResponseEntity<?> authenticate (@RequestBody AuthenticationRequest authenticationRequest) throws CommonException, Exception{
+	// JWT 토큰을 반환하는 호출(테스트용), (id, password) 형식으로 계정정보 전송 시 토큰 반환
+	@PostMapping("/test")
+	   public ResponseEntity<?> authenticate (@RequestBody LoginInfo loginInfo) throws CommonException, Exception{
 	      
-	      Jwt token = this.jwtUtil.makeJwt(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+	      Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
 	      return ResponseEntity.ok(  new AuthenticationResponse(token));
 	   }
 	
-	@PostMapping("/api/checkid")
+	@PostMapping("/checkid")
 	public ResponseEntity<String> isDuplicated (@RequestBody LoginInfo loginInfo) { 
-		//아이디 패스워드만 받는 객체 생성. 	
-		//근데 의문.. 왜로그인 여부만 판단. 안드에서 그럼 t/f로 다시 어카운트 정보를 리드 하는거야?? 
 		ResponseEntity<String>  resEntity = null;
 		int account_result = myPageFacade.isDuplicated(loginInfo);
 		if (account_result == 1) // 중복된 아이디 존재 시 false 반환 

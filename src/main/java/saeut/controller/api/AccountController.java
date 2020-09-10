@@ -26,15 +26,27 @@ public class AccountController {
 	@Autowired
 	private MyPageFacade myPageFacade;
 	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<List<Account>> findAllAccount () {
+		
+		List<Account> list = myPageFacade.getAllAccount();
+		
+		return new ResponseEntity(list,HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Account> findAccount (@PathVariable("id") String id) {
 		
 		Account account = myPageFacade.getAccountByUserId(id);
 		
-		return new ResponseEntity(account,HttpStatus.OK);
+		if(!(account==null))
+			return new ResponseEntity(account,HttpStatus.OK);
+		else
+			return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(value = "/{type}", method = RequestMethod.GET)
+	@RequestMapping(value = "/type/{type}", method = RequestMethod.GET)
 	public ResponseEntity<List<Account>> findAccountByType(@PathVariable("type") int type) {
 		
 		List<Account> accounts = myPageFacade.getAllAccount();

@@ -63,9 +63,8 @@ public class SignonController {
 	 */
 	@PostMapping( value = "/get_access_token")
 	public ResponseEntity<AuthenticationResponse> get_access_token() throws Exception{
-	//-> rt를 바디로 전달 ,, -> 디비에서 유저 아이디 알 수 있으니까 ㅂ재발급가능하다... 
+	//-> rt를 바디로 전달 ,, -rt를 통해 유저아이디 알수있으니까 ㅂ재발급가능하다... 
 	//rt가 유효하면 재발급 (아이디가 필요) 
-	// rt가 유효하다는 의미 -> 
 		Jwt token = this.jwtUtil.makeReJwt();
 		return ResponseEntity.ok(new AuthenticationResponse(token));
 	}

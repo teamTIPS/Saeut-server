@@ -17,6 +17,9 @@ public class UserAdditional implements Serializable{
 	private String address1;
 	private String address2;
 	private String id; // (FK) - PK
+	private int type;
+	private String pic;
+	
 	
 	public int getRank() {
 		return ranks;
@@ -72,5 +75,17 @@ public class UserAdditional implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	
 }

@@ -16,8 +16,6 @@ public class UserEssential implements Serializable {
     private String name;
     private String nickname; 
     private int phone;
-    private String pic;
-    private int type;
     
 	/* JavaBeans Properties */
 	public String getId() {
@@ -50,17 +48,4 @@ public class UserEssential implements Serializable {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public String getPic() {
-		return pic;
-	}
-	public void setPic(String pic) {
-		this.pic = pic;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-      
 }

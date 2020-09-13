@@ -48,4 +48,10 @@ public class UserEssential implements Serializable {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
+	
+	@Override
+	public String toString() {
+		return "userEssential [id=" + id + ", password=" + password + ", name="+name
+				+", nickname=+"+nickname+", phone="+phone+"]";
+	}
 }

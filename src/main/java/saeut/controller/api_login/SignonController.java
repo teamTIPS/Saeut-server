@@ -47,7 +47,7 @@ public class SignonController {
 			try { 
 				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
 				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
-				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token));
+				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result));
 			}catch(Exception e) { 
 				//로그인 실패 응답 시에 아이디가 문제인지 비번이 문제인지 아예 존재하지 않는 회원인지 구분해서 응답하기 
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

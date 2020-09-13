@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.UserAdditionalMapper">
+  <cache />
+  
+	  <select id="getUserAdditionalByUserId" resultType="UserAdditional">
+	    select ranks, score, description, type, id 
+		from UserAdditional 
+		where id = #{id}
+	  </select>
+	  
+	  <select id="getAllUserAdditional" resultType="UserAdditional">
+	    select ranks, score, description, type, id  
+		from UserAdditional
+	  </select>
+	  
+	   <insert id="insertUserAdditional"  parameterType="UserAdditional">
+		 insert into UserAdditional(ranks, score, description, type, id)
+		 values(#{ranks}, #{score}, #{description}, #{type}, #{id})
+		</insert>
+	
+   	  <update id="modUserAdditional"  parameterType="UserAdditional">
+	     update UserAdditional
+	     set rank=#{ranks}, score=#{score}, description=#{description}, type=#{type}
+	     where id=#{id}
+   	  </update> 
+     
+      <delete id="removeUserAdditional"  parameterType="String">
+	   delete from UserAdditional
+	   where
+	   id=#{id}
+	  </delete>
+	  
+  
+  </mapper>

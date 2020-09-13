@@ -40,26 +40,6 @@ public class UserEssentialController {
 			return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(value = "/type/{type}", method = RequestMethod.GET)
-	public ResponseEntity<List<UserEssential>> findUserEssentialByType(@PathVariable("type") int type) {
-		
-		List<UserEssential> UserEssentials = myPageFacade.getAllUserEssential();
-		List<UserEssential> result = null;
-		
-		for(int i = 0; i < UserEssentials.size(); i++) {
-			if(UserEssentials.get(i).getType() == type) {
-				result.add(i, UserEssentials.get(i));
-			}else {
-				continue;
-			}
-		}
-		if(result == null) {
-			//return new ResponseEntity("typeError",HttpStatus.OK));
-		}
-		
-		return ResponseEntity.status(HttpStatus.OK).body(result);
-	}
-	
 	@RequestMapping(value = "/nick/{id}", method = RequestMethod.GET)
 	public ResponseEntity<String> findNickname (@PathVariable("id") String id) {
 		

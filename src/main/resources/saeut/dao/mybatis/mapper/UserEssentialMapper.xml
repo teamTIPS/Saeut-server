@@ -4,19 +4,19 @@
   <cache />
   
 	  <select id="getUserEssentialByUserId" resultType="UserEssential">
-	    select id, password, name, nickname, phone, pic, type
+	    select id, password, name, nickname, phone
 		from UserEssential 
 		where id = #{id}
 	  </select>
 	  
   	  <select id="getUserEssentialByUserIdAndPassword" resultType="UserEssential">
-	    select id, password, name, nickname, phone, pic, type
+	    select id, password, name, nickname, phone
 		from UserEssential 
 		where id = #{id} and password = #{password}
   	  </select>
 	  
 	  <select id="getAllUserEssential" resultType="UserEssential">
-	    select id, password, name, nickname, phone, pic,type 
+	    select id, password, name, nickname, phone 
 		from UserEssential
 	  </select>
 	  
@@ -25,23 +25,19 @@
 	  </select>
 	  
 	   <insert id="insertUserEssential"  parameterType="UserEssential">
-		 insert into UserEssential(id, password, name, nickname, phone, pic, type)
-		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone}, 
-		 #{pic},#{type})
+		 insert into UserEssential(id, password, name, nickname, phone)
+		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone})
 		</insert>
 	
    	  <update id="modUserEssential"  parameterType="UserEssential">
 	     update UserEssential
-	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}, 
-	     pic=#{pic}, type=#{type}
-	     where
-	     id=#{id}
+	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}}
+	     where	id=#{id}
    	  </update> 
      
       <delete id="removeUserEssential"  parameterType="String">
 	   delete from UserEssential
-	   where
-	   id=#{id}
+	   where id=#{id}
 	  </delete>
 	  
 	  <select id="isDuplicated" resultType="int">

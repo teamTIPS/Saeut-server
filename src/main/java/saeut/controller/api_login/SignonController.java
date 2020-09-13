@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import saeut.security.AuthenticationResponse;
 import saeut.security.CommonException;
 import saeut.security.Jwt;
 import saeut.security.JwtComponent;
+import saeut.security.JwtComponent.TOKEN_TYPE;
 import saeut.service.facade.MyPageFacade;
 
 
@@ -43,7 +45,7 @@ public class SignonController {
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}else {  
 			try { 
-				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송
+				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
 				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
 				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token));
 			}catch(Exception e) { 
@@ -62,11 +64,22 @@ public class SignonController {
 	 * 
 	 */
 	@PostMapping( value = "/get_access_token")
-	public ResponseEntity<AuthenticationResponse> get_access_token() throws Exception{
-	//-> rt를 바디로 전달 ,, -rt를 통해 유저아이디 알수있으니까 ㅂ재발급가능하다... 
-	//rt가 유효하면 재발급 (아이디가 필요) 
-		Jwt token = this.jwtUtil.makeReJwt();
-		return ResponseEntity.ok(new AuthenticationResponse(token));
+	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt jwt) throws Exception{
+	//-> rt를 바디로 전달 ,, -> rt를 통해 유저아이디 알수있으니까 재발급가능하다... 
+		ResponseEntity<AuthenticationResponse> resEntity = null;
+		String rt = jwt.getRefreshToken();
+		String subject = this.jwtUtil.extractUsername(rt, TOKEN_TYPE.REFRESH_TOKEN);
+		final UserDetails user = this.jwtUtil.getUserDetailService().loadUserByUsername(subject);
+		
+		Boolean isValid = this.jwtUtil.validateToken(rt, user, TOKEN_TYPE.REFRESH_TOKEN);
+		if( isValid) { //유효하면 at만 재발행 
+			Jwt token = this.jwtUtil.makeReJwt();
+			resEntity =  ResponseEntity.ok(new AuthenticationResponse(token));
+			
+		}else {// 만료되었을 때 
+			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+		return resEntity;
 	}
 		
 	

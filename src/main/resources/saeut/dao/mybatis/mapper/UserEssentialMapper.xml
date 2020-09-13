@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.UserEssentialMapper">
+  <cache />
+  
+	  <select id="getUserEssentialByUserId" resultType="UserEssential">
+	    select id, password, name, nickname, phone, pic, type
+		from UserEssential 
+		where id = #{id}
+	  </select>
+	  
+  	  <select id="getUserEssentialByUserIdAndPassword" resultType="UserEssential">
+	    select id, password, name, nickname, phone, pic, type
+		from UserEssential 
+		where id = #{id} and password = #{password}
+  	  </select>
+	  
+	  <select id="getAllUserEssential" resultType="UserEssential">
+	    select id, password, name, nickname, phone, pic,type 
+		from UserEssential
+	  </select>
+	  
+	  <select id="getNicknameByUserID" parameterType="String" resultType="String">
+	    select nickname from UserEssential where id=#{id};
+	  </select>
+	  
+	   <insert id="insertUserEssential"  parameterType="UserEssential">
+		 insert into UserEssential(id, password, name, nickname, phone, pic, type)
+		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone}, 
+		 #{pic},#{type})
+		</insert>
+	
+   	  <update id="modUserEssential"  parameterType="UserEssential">
+	     update UserEssential
+	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}, 
+	     pic=#{pic}, type=#{type}
+	     where
+	     id=#{id}
+   	  </update> 
+     
+      <delete id="removeUserEssential"  parameterType="String">
+	   delete from UserEssential
+	   where
+	   id=#{id}
+	  </delete>
+	  
+	  <select id="isDuplicated" resultType="int">
+	    select COUNT(*)
+		from UserEssential 
+		where id = #{id}
+	  </select>
+	  
+  
+  </mapper>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import saeut.domain.Account;
+import saeut.domain.UserEssential;
 import lombok.Getter;
 
 @Getter
@@ -12,18 +12,18 @@ public class CustomUser extends User {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Account account;
+	private UserEssential UserEssential;
 
 	public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CustomUser(Account account) {
+	public CustomUser(UserEssential UserEssential) {
 		
-		super(account.getId(),account.getPassword(),new ArrayList<>());
+		super(UserEssential.getId(),UserEssential.getPassword(),new ArrayList<>());
 		
-		this.account = account;
+		this.UserEssential = UserEssential;
 	}
 
 }

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import saeut.dao.mybatis.mapper.AccountMapper;
-import saeut.domain.Account;
+import saeut.dao.mybatis.mapper.UserEssentialMapper;
+import saeut.domain.UserEssential;
 
 /**
  * 사용자 처리 서비스
@@ -20,13 +20,13 @@ import saeut.domain.Account;
 public class CustomUserDetailService implements UserDetailsService{
 	
 	@Setter(onMethod_ = {@Autowired })
-	private AccountMapper accountMapper;
+	private UserEssentialMapper UserEssentialMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Account account = accountMapper.getAccountByUserId(username);
+		UserEssential UserEssential = UserEssentialMapper.getUserEssentialByUserId(username);
 		
-		return account == null? null : new CustomUser(account);
+		return UserEssential == null? null : new CustomUser(UserEssential);
 	}
 }

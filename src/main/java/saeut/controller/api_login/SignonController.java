@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import saeut.domain.Account;
 import saeut.domain.LoginInfo;
+import saeut.domain.UserEssential;
 import saeut.security.AuthenticationResponse;
 import saeut.security.CommonException;
 import saeut.security.Jwt;
@@ -39,9 +39,9 @@ public class SignonController {
 	@PostMapping("/authenticate")   
 	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
-		Account account_result = myPageFacade.getAccountByUserIdAndPassword(loginInfo);
+		UserEssential UserEssential_result = myPageFacade.getUserEssentialByUserIdAndPassword(loginInfo);
 	
-		if (account_result == null) { 
+		if (UserEssential_result == null) { 
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}else {  
 			try { 
@@ -94,8 +94,8 @@ public class SignonController {
 	@PostMapping("/checkid")
 	public ResponseEntity<String> isDuplicated (@RequestBody LoginInfo loginInfo) { 
 		ResponseEntity<String>  resEntity = null;
-		int account_result = myPageFacade.isDuplicated(loginInfo);
-		if (account_result == 1) // 중복된 아이디 존재 시 false 반환 
+		int UserEssential_result = myPageFacade.isDuplicated(loginInfo);
+		if (UserEssential_result == 1) // 중복된 아이디 존재 시 false 반환 
 			resEntity = ResponseEntity.status(HttpStatus.OK).body("false");			
 		else  // 중복된 아이디가 없을 시 true 반환
 			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");

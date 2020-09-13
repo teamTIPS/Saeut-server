@@ -7,15 +7,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import saeut.dao.AccountDao;
+import saeut.dao.UserEssentialDao;
 import saeut.dao.CertificateDao;
-import saeut.dao.DemandDao;
-import saeut.dao.SupplyDao;
-import saeut.domain.Account;
+import saeut.dao.UserAdditionalDao;
+import saeut.domain.UserEssential;
 import saeut.domain.Certificate;
-import saeut.domain.Demand;
+import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
-import saeut.domain.Supply;
 import saeut.service.facade.MyPageFacade;
 
 @Repository
@@ -24,65 +22,63 @@ import saeut.service.facade.MyPageFacade;
 public class MyPageImpl implements MyPageFacade{
 
 	@Autowired
-	private AccountDao accountDao;
+	private UserEssentialDao UserEssentialDao;
 	@Autowired
 	private CertificateDao certificateDao;
 	@Autowired
-	private DemandDao demandDao;
-	@Autowired
-	private SupplyDao supplyDao;
+	private UserAdditionalDao UserAdditionalDao;
 	
 	/*
-	 * AccountDao
+	 * UserEssentialDao
 	 */
 	@Override
-	public Account getAccountByUserId(String id) {
-		return accountDao.getAccountByUserId(id);
+	public UserEssential getUserEssentialByUserId(String id) {
+		return UserEssentialDao.getUserEssentialByUserId(id);
 	}
 
 //	@Override
-//	public Account getAccountByUserIdAndPassword(Account account) {
-//		return accountDao.getAccountByUserIdAndPassword(account);
+//	public UserEssential getUserEssentialByUserIdAndPassword(UserEssential UserEssential) {
+//		return UserEssentialDao.getUserEssentialByUserIdAndPassword(UserEssential);
 //	};
 //	
 	
 	@Override
-	public Account getAccountByUserIdAndPassword(LoginInfo loginInfo) {
-		return accountDao.getAccountByUserIdAndPassword(loginInfo);
+	public UserEssential getUserEssentialByUserIdAndPassword(LoginInfo loginInfo) {
+		return UserEssentialDao.getUserEssentialByUserIdAndPassword(loginInfo);
 	};
 	
 	@Override
 	public int isDuplicated(LoginInfo loginInfo) {
 		// TODO Auto-generated method stub
-		return accountDao.isDuplicated(loginInfo);
+		return UserEssentialDao.isDuplicated(loginInfo);
 	}
 
 	
 	
 	@Override
-	public List<Account> getAllAccount(){
-		return accountDao.getAllAccount();
+	public List<UserEssential> getAllUserEssential(){
+		return UserEssentialDao.getAllUserEssential();
 	}
 	
 	@Override
 	public String getNicknameByUserID(String id) {
 		// TODO Auto-generated method stub
-		return accountDao.getNicknameByUserID(id);
+		return UserEssentialDao.getNicknameByUserID(id);
 	}
 	
 	@Override
-	public void insertAccount(Account account) {
-		accountDao.insertAccount(account);
+	public void insertUserEssential(UserEssential UserEssential) {
+		UserEssentialDao.insertUserEssential(UserEssential);
 	};
 		
     @Override
-	public void modAccount(Account account) {
-    	accountDao.modAccount(account);
+	public void modUserEssential(UserEssential UserEssential) {
+    	UserEssentialDao.modUserEssential(UserEssential);
     };
 		
 	@Override
-	public void removeAccount(String userId) {
-		accountDao.removeAccount(userId);
+	public void removeUserEssential(String userId) {
+		UserEssentialDao.removeUserEssential(userId);
 	}
 
 	/*
@@ -119,66 +115,32 @@ public class MyPageImpl implements MyPageFacade{
 	}
 
 	/*
-	 * DemandDao
+	 * UserAdditionalDao
 	 */
 	
 	@Override
-	public List<Demand> getAllDemand() {
-		return demandDao.getAllDemand();
+	public List<UserAdditional> getAllUserAdditional() {
+		return UserAdditionalDao.getAllUserAdditional();
 	}
 
 	@Override
-	public Demand getDemandByUserId(String userId) {
-		return demandDao.getDemandByUserId(userId);
+	public UserAdditional getUserAdditionalByUserId(String userId) {
+		return UserAdditionalDao.getUserAdditionalByUserId(userId);
 	}
 
 	@Override
-	public void insertDemand(Demand demand) {
-		demandDao.insertDemand(demand);
+	public void insertUserAdditional(UserAdditional UserAdditional) {
+		UserAdditionalDao.insertUserAdditional(UserAdditional);
 	}
 
 	@Override
-	public void modDemand(Demand demand) {
-		demandDao.modDemand(demand);
+	public void modUserAdditional(UserAdditional UserAdditional) {
+		UserAdditionalDao.modUserAdditional(UserAdditional);
 	}
 
 	@Override
-	public void removeDemand(String userId) {
-		demandDao.removeDemand(userId);
+	public void removeUserAdditional(String userId) {
+		UserAdditionalDao.removeUserAdditional(userId);
 	}
-
-	/*
-	 * SupplyDao
-	 */
-	
-	@Override
-	public List<Supply> getAllSupply() {
-		return supplyDao.getAllSupply();
-	}
-
-	@Override
-	public Supply getSupplyByUserId(String userId) {
-		return supplyDao.getSupplyByUserId(userId);
-	}
-
-	@Override
-	public void insertSupply(Supply supply) {
-		supplyDao.insertSupply(supply);
-	}
-
-	@Override
-	public void modSupply(Supply supply) {
-		supplyDao.modSupply(supply);
-	}
-
-	@Override
-	public void removeSupply(String userId) {
-		supplyDao.removeSupply(userId);
-	}
-
-	
-	
-	
-
 	
 }

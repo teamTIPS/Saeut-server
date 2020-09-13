@@ -2,24 +2,23 @@ package saeut.service.facade;
 
 import java.util.List;
 
-import saeut.domain.Account;
+import saeut.domain.UserEssential;
 import saeut.domain.Certificate;
-import saeut.domain.Demand;
+import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
-import saeut.domain.Supply;
 
 public interface MyPageFacade {
 
 	/////////////////////////////////////////////////////////////////////////
-	/* Account */
+	/* UserEssential */
 	/////////////////////////////////////////////////////////////////////////
-	Account getAccountByUserId(String id);
-	Account getAccountByUserIdAndPassword(LoginInfo loginInfo);		
-	List<Account> getAllAccount();
+	UserEssential getUserEssentialByUserId(String id);
+	UserEssential getUserEssentialByUserIdAndPassword(LoginInfo loginInfo);		
+	List<UserEssential> getAllUserEssential();
 	String getNicknameByUserID(String id);
-	void insertAccount(Account account);
-	void modAccount(Account account);
-	void removeAccount(String id);
+	void insertUserEssential(UserEssential UserEssential);
+	void modUserEssential(UserEssential UserEssential);
+	void removeUserEssential(String id);
 	int isDuplicated(LoginInfo loginInfo);
 	/////////////////////////////////////////////////////////////////////////
 	/* Certificate */
@@ -31,20 +30,13 @@ public interface MyPageFacade {
 	void modCertificate(Certificate certificate);
 	void removeCertificate(int cert_id);
 	/////////////////////////////////////////////////////////////////////////
-	/* Demand */
+	/* UserAdditional */
 	/////////////////////////////////////////////////////////////////////////	
-	List<Demand> getAllDemand();
-	Demand getDemandByUserId(String userId);
-	void insertDemand(Demand demand);
-	void modDemand(Demand demand);
-	void removeDemand(String userId);
-	/////////////////////////////////////////////////////////////////////////
-	/* Supply */
-	/////////////////////////////////////////////////////////////////////////	
-	List<Supply> getAllSupply();
-	Supply getSupplyByUserId(String userId);
-	void insertSupply(Supply supply);
-	void modSupply(Supply supply);
-	void removeSupply(String userId);
+	List<UserAdditional> getAllUserAdditional();
+	UserAdditional getUserAdditionalByUserId(String userId);
+	void insertUserAdditional(UserAdditional UserAdditional);
+	void modUserAdditional(UserAdditional UserAdditional);
+	void removeUserAdditional(String userId);
+
 
 }

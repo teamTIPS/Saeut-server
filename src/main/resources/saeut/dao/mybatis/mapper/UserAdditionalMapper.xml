@@ -4,31 +4,32 @@
   <cache />
   
 	  <select id="getUserAdditionalByUserId" resultType="UserAdditional">
-	    select ranks, score, description, type, id 
+	    select id, type, pic, rank, score, description, birth, zipcode, address1, address2
 		from UserAdditional 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllUserAdditional" resultType="UserAdditional">
-	    select ranks, score, description, type, id  
+	    select id, type, pic, rank, score, description, birth, zipcode, address1, address2
 		from UserAdditional
 	  </select>
 	  
 	   <insert id="insertUserAdditional"  parameterType="UserAdditional">
-		 insert into UserAdditional(ranks, score, description, type, id)
-		 values(#{ranks}, #{score}, #{description}, #{type}, #{id})
+		 insert into UserAdditional(id, type, pic, rank, score, description, birth, zipcode, address1, address2)
+		 values(#{id}, #{type}, #{pic}, #{rank}, #{score}, #{description}, 
+		 			#{birth}, #{zipcode}, #{address1}, #{address2})
 		</insert>
 	
    	  <update id="modUserAdditional"  parameterType="UserAdditional">
 	     update UserAdditional
-	     set rank=#{ranks}, score=#{score}, description=#{description}, type=#{type}
+	     set  type=#{type}, pic=#{pic}, rank=#{ranks}, score=#{score}, description=#{description},
+	     	birth=#{birth}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}
 	     where id=#{id}
    	  </update> 
      
       <delete id="removeUserAdditional"  parameterType="String">
 	   delete from UserAdditional
-	   where
-	   id=#{id}
+	   where  id=#{id}
 	  </delete>
 	  
   

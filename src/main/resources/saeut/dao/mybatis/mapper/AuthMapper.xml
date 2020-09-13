@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="saeut.dao.mybatis.mapper.AuthMapper">
+  <cache />
+  
+  <select id="getAllAuth" resultType="Auth">
+  	select id, refreshToken, refreshToken_expireTime
+  	from Auth
+  </select>
+  
+   <select id="getAuthByUserId" parameterType="String">
+  	select id, refreshToken, refreshToken_expireTime
+  	from Auth
+  	where id=#{id}
+  </select>
+  
+  <insert id="insertAuth" parameterType="Auth">
+  	insert into Auth(id, refreshToken, refreshToken_expireTime)
+  	values(#{id}, #{refreshToken},#{refreshToken_expireTime})
+  </insert>
+  
+  <update id="modAuth"  parameterType="Auth">
+	     update Auth
+	     set refreshToken=#{refreshToken}, refreshToken_expireTime={refreshToken_expireTime} 
+	     where id=#{id}
+  </update> 
+     
+  <delete id="removeAuth"  parameterType="String">
+	   delete from Auth
+	   where id=#{id}
+  </delete>
+  	  
+  
+  </mapper>

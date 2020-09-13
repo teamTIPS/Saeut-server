@@ -73,7 +73,7 @@ public class SignonController {
 		
 		Boolean isValid = this.jwtUtil.validateToken(rt, user, TOKEN_TYPE.REFRESH_TOKEN);
 		if( isValid) { //유효하면 at만 재발행 
-			Jwt token = this.jwtUtil.makeReJwt();
+			Jwt token = this.jwtUtil.makeReJwt(rt);
 			resEntity =  ResponseEntity.ok(new AuthenticationResponse(token));
 			
 		}else {// 만료되었을 때 

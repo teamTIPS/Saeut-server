@@ -276,6 +276,20 @@ public class JwtComponent {
 		String accessToken = this.createToken(claims, userDetails.getUsername(), TOKEN_TYPE.ACCESS_TOKEN);		
 		return new Jwt(accessToken, refreshToken);
 	}
+
+	
+	/**
+	 *  Access 토큰만 생성
+	 * @param userDetails
+	 * @return
+	 */
+	private Jwt generateRefreshToken( UserDetails userDetails, String accessToken) {
+		
+		Map<String, Object> claims = new HashMap<String, Object>();
+		String refreshToken = this.createToken(claims, userDetails.getUsername(), TOKEN_TYPE.ACCESS_TOKEN);		
+		return new Jwt(accessToken, refreshToken);
+	}
+
 	
 	
 	/**
@@ -287,11 +301,34 @@ public class JwtComponent {
 	public Jwt makeReJwt(String refreshToken) throws CommonException {
 		// rt를 이용해서 at만 발급 받도록 메소드 수정 
 		try {
-			
+
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			
 			final UserDetails user = myUserDetailService.loadUserByUsername( authentication.getName());
 			final Jwt jwt = this.generateAccessToken(user, refreshToken);
+			
+			return jwt;
+		} catch ( BadCredentialsException e) {
+			
+			throw new CommonException(e, EnumSecurityException.BadCredentialsException);
+		}
+		
+	}
+	
+
+	/**
+	 * refresh token 갱신 
+	 * @param username
+	 * @return
+	 * @throws CommonException
+	 */
+	public Jwt updateReJwt(String accessToken) throws CommonException {
+		try {
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
+			final UserDetails user = myUserDetailService.loadUserByUsername( authentication.getName());
+			final Jwt jwt = this.generateRefreshToken(user, accessToken);
 			
 			return jwt;
 		} catch ( BadCredentialsException e) {

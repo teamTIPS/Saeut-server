@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.LoginInfo;
@@ -65,7 +66,8 @@ public class SignonController {
 	 */
 	@PostMapping( value = "/get_access_token")
 	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt jwt) throws Exception{
-	//-> rt를 바디로 전달 ,, -> rt를 통해 유저아이디 알수있으니까 재발급가능하다... 
+		// at, rt를 바디로 전달 ,, -> at와 rt 둘다 전달 왜? at는 해당 유저의 토큰인지 확인하기위함.... 
+		// 일단 at로 해당 유저인것을 확인하지 않고 rt만 가지고  유저정보 불러오는데 수정필요할수도있는 부분 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
 		String rt = jwt.getRefreshToken();
 		String subject = this.jwtUtil.extractUsername(rt, TOKEN_TYPE.REFRESH_TOKEN);
@@ -82,6 +84,28 @@ public class SignonController {
 		return resEntity;
 	}
 		
+	/*
+	 *	Refresh Token의 만료 기간이 1/2남았을 때, Refresh Token을 update해준다.  
+	 *  헤더에 at만 넘어옴 -> rt를 새로 발급해서 디비에 저장(원래 있던 rt update) 및 갱신한 rt 응답하기 
+	 */
+	@PostMapping( value = "/get_refresh_token")
+	public ResponseEntity<AuthenticationResponse> get_refresh_token(
+			@RequestHeader("Authorization") String at) throws Exception{
+		//요청 : 헤더에 at를 전달해준다..바디는 널이다.. 
+		ResponseEntity<AuthenticationResponse> resEntity = null;
+
+		String subject = this.jwtUtil.extractUsername(at, TOKEN_TYPE.ACCESS_TOKEN);
+		final UserDetails user = this.jwtUtil.getUserDetailService().loadUserByUsername(subject);
+		
+		try {
+			Jwt token = this.jwtUtil.updateReJwt(at); 
+			resEntity =  ResponseEntity.ok(new AuthenticationResponse(token));
+		}catch(Exception e) { 
+			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+		return resEntity;
+	}
+	
 	
 	// JWT 토큰을 반환하는 호출(테스트용), (id, password) 형식으로 계정정보 전송 시 토큰 반환
 	@PostMapping("/test")

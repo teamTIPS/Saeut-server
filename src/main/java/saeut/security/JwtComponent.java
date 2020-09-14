@@ -105,7 +105,7 @@ public class JwtComponent {
 	 * @return
 	 * @throws CommonException
 	 */
-	private Date extractExpiration(String token, TOKEN_TYPE tokenType) throws CommonException {
+	public Date extractExpiration(String token, TOKEN_TYPE tokenType) throws CommonException {
 	
 		return this.extractClaim(token, Claims::getExpiration, tokenType);
 	}

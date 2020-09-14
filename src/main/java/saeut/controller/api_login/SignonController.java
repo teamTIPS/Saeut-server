@@ -58,7 +58,14 @@ public class SignonController {
 				auth.setId(loginInfo.getId());
 				auth.setRefreshToken(token.getRefreshToken());
 				auth.setRefreshToken_expiretime(this.jwtUtil.extractExpiration(token.getRefreshToken(), TOKEN_TYPE.REFRESH_TOKEN));
-				authFacade.insertAuth(auth);
+				if(authFacade.isDuplicated(loginInfo.getId())==0) {
+					// 저장되어 있는 RT값이 없는 경우 신규 생성
+					authFacade.insertAuth(auth);
+				}
+				else {
+					// 이미 저장되어 있는 RT값이 존재하는 경우 새로운 RT정보값으로 수정
+					authFacade.modAuth(auth);
+				}
 			}catch(Exception e) { 
 				//로그인 실패 응답 시에 아이디가 문제인지 비번이 문제인지 아예 존재하지 않는 회원인지 구분해서 응답하기 
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

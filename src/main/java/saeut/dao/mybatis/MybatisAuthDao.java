@@ -44,6 +44,12 @@ public class MybatisAuthDao implements AuthDao{
 		// TODO Auto-generated method stub
 		authMapper.modAuth(auth);
 	}
+
+	@Override
+	public int isDuplicated(String id) {
+		// TODO Auto-generated method stub
+		return authMapper.isDuplicated(id);
+	}
 	
 
 }

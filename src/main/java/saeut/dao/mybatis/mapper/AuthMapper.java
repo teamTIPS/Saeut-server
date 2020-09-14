@@ -15,4 +15,6 @@ public interface AuthMapper {
 	void removeAuth(String id);
 	
 	void modAuth(Auth auth);
+	
+	int isDuplicated(String id);
 }

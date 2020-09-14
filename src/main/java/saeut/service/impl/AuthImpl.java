@@ -50,5 +50,11 @@ public class AuthImpl implements AuthFacade{
 		
 	}
 
+	@Override
+	public int isDuplicated(String id) {
+		// TODO Auto-generated method stub
+		return authDao.isDuplicated(id);
+	}
+
 
 }

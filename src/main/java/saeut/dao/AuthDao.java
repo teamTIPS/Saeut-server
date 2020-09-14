@@ -17,4 +17,6 @@ public interface AuthDao {
 	void modAuth(Auth auth);
 	
 	void removeAuth(String id);
+	
+	int isDuplicated(String id);
 }

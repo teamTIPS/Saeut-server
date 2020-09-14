@@ -20,15 +20,21 @@
   </insert>
   
   <update id="modAuth"  parameterType="Auth">
-	     update Auth
-	     set refreshToken=#{refreshToken}, refreshToken_expireTime={refreshToken_expireTime} 
-	     where id=#{id}
+     update Auth
+     set refreshToken=#{refreshToken}, refreshToken_expireTime=#{refreshToken_expireTime} 
+     where id=#{id}
   </update> 
      
   <delete id="removeAuth"  parameterType="String">
-	   delete from Auth
-	   where id=#{id}
+   delete from Auth
+   where id=#{id}
   </delete>
+  
+  <select id="isDuplicated" resultType="int">
+    select COUNT(*)
+	from Auth 
+	where id = #{id}
+  </select>
   	  
   
   </mapper>

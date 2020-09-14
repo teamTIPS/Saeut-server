@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.LoginInfo;
 import saeut.domain.UserEssential;
+import saeut.domain.Auth;
 import saeut.security.AuthenticationResponse;
 import saeut.security.CommonException;
 import saeut.security.Jwt;
 import saeut.security.JwtComponent;
 import saeut.security.JwtComponent.TOKEN_TYPE;
 import saeut.service.facade.MyPageFacade;
+import saeut.service.facade.AuthFacade;
 
 
 @RestController
@@ -30,12 +32,15 @@ public class SignonController {
 	private MyPageFacade myPageFacade;
 	@Autowired
 	private JwtComponent jwtUtil;
+	@Autowired
+	private AuthFacade authFacade;
 	
 	/*
 	 * 1. 로그인 실패 시 BAD_REQUEST 리턴
 	 * 2. 로그인 성공 시 
 	 * 		2-1. access token과 refresh token발급 -> 디비에는 refresh token만을 저장 (그럼 매치를 어떻게..?)
 	 * 		2-2. 클라이언트에게 at와 rt 응답 
+	 * 		2-3. rt DB에 저장
 	 */
 	@PostMapping("/authenticate")   
 	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
@@ -49,6 +54,19 @@ public class SignonController {
 				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
 				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
 				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result));
+				// 성공한 아이디와 RT를 데이터베이스에 저장
+				Auth auth = new Auth();
+				auth.setId(loginInfo.getId());
+				auth.setRefreshToken(token.getRefreshToken());
+				auth.setRefreshToken_expiretime(this.jwtUtil.extractExpiration(token.getRefreshToken(), TOKEN_TYPE.REFRESH_TOKEN));
+				if(authFacade.isDuplicated(loginInfo.getId())==0) {
+					// 저장되어 있는 RT값이 없는 경우 신규 생성
+					authFacade.insertAuth(auth);
+				}
+				else {
+					// 이미 저장되어 있는 RT값이 존재하는 경우 새로운 RT정보값으로 수정
+					authFacade.modAuth(auth);
+				}
 			}catch(Exception e) { 
 				//로그인 실패 응답 시에 아이디가 문제인지 비번이 문제인지 아예 존재하지 않는 회원인지 구분해서 응답하기 
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

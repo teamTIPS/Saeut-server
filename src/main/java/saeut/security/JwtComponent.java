@@ -286,7 +286,7 @@ public class JwtComponent {
 	private Jwt generateRefreshToken( UserDetails userDetails, String accessToken) {
 		
 		Map<String, Object> claims = new HashMap<String, Object>();
-		String refreshToken = this.createToken(claims, userDetails.getUsername(), TOKEN_TYPE.ACCESS_TOKEN);		
+		String refreshToken = this.createToken(claims, userDetails.getUsername(), TOKEN_TYPE.REFRESH_TOKEN);		
 		return new Jwt(accessToken, refreshToken);
 	}
 
@@ -302,9 +302,10 @@ public class JwtComponent {
 		// rt를 이용해서 at만 발급 받도록 메소드 수정 
 		try {
 
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String username = this.extractUsername(refreshToken, TOKEN_TYPE.REFRESH_TOKEN);
 			
-			final UserDetails user = myUserDetailService.loadUserByUsername( authentication.getName());
+			final UserDetails user = myUserDetailService.loadUserByUsername(username);
 			final Jwt jwt = this.generateAccessToken(user, refreshToken);
 			
 			return jwt;
@@ -325,9 +326,10 @@ public class JwtComponent {
 	public Jwt updateReJwt(String accessToken) throws CommonException {
 		try {
 
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String username = this.extractUsername(accessToken, TOKEN_TYPE.ACCESS_TOKEN);
 			
-			final UserDetails user = myUserDetailService.loadUserByUsername( authentication.getName());
+			final UserDetails user = myUserDetailService.loadUserByUsername(username);
 			final Jwt jwt = this.generateRefreshToken(user, accessToken);
 			
 			return jwt;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.LoginInfo;
 import saeut.domain.UserEssential;
 import saeut.domain.Auth;
+import saeut.domain.Jwt_request;
 import saeut.security.AuthenticationResponse;
 import saeut.security.CommonException;
 import saeut.security.Jwt;
@@ -83,7 +84,7 @@ public class SignonController {
 	 * 
 	 */
 	@PostMapping( value = "/get_access_token")
-	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt jwt) throws Exception{
+	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt_request jwt) throws Exception{
 		// at, rt를 바디로 전달 ,, -> at와 rt 둘다 전달 왜? at는 해당 유저의 토큰인지 확인하기위함.... 
 		// 일단 at로 해당 유저인것을 확인하지 않고 rt만 가지고  유저정보 불러오는데 수정필요할수도있는 부분 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
@@ -118,6 +119,18 @@ public class SignonController {
 		try {
 			Jwt token = this.jwtUtil.updateReJwt(at); 
 			resEntity =  ResponseEntity.ok(new AuthenticationResponse(token));
+			Auth auth = new Auth();
+			auth.setId(subject);
+			auth.setRefreshToken(token.getRefreshToken());
+			auth.setRefreshToken_expiretime(this.jwtUtil.extractExpiration(token.getRefreshToken(), TOKEN_TYPE.REFRESH_TOKEN));
+			if(authFacade.isDuplicated(subject)==0) {
+				// 저장되어 있는 RT값이 없는 경우 신규 생성
+				authFacade.insertAuth(auth);
+			}
+			else {
+				// 이미 저장되어 있는 RT값이 존재하는 경우 새로운 RT정보값으로 수정
+				authFacade.modAuth(auth);
+			}
 		}catch(Exception e) { 
 			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}

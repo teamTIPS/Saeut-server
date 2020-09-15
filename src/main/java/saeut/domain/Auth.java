@@ -8,14 +8,14 @@ public class Auth {
 	
 	private String id;
 	private String refreshToken;
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date refreshToken_expireTime;
 	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.id = id; 
 	}
 	public String getRefreshToken() {
 		return refreshToken;

@@ -25,5 +25,4 @@ public class Apply {
 		this.introduce = introduce;
 	} 
 	
-	
 }

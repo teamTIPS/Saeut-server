@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.LoginInfo;
+import saeut.domain.UserAdditional;
 import saeut.domain.UserEssential;
 import saeut.domain.Auth;
 import saeut.domain.Jwt_request;
@@ -47,6 +48,7 @@ public class SignonController {
 	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
 		UserEssential UserEssential_result = myPageFacade.getUserEssentialByUserIdAndPassword(loginInfo);
+		UserAdditional UserAdditional_result = myPageFacade.getUserAdditionalByUserId(loginInfo.getId());
 	
 		if (UserEssential_result == null) { 
 				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -54,7 +56,7 @@ public class SignonController {
 			try { 
 				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
 				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
-				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result));
+				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result, UserAdditional_result));
 				// 성공한 아이디와 RT를 데이터베이스에 저장
 				Auth auth = new Auth();
 				auth.setId(loginInfo.getId());

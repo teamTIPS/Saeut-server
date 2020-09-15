@@ -22,6 +22,7 @@ public class Post implements Serializable{
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date due_date; // 돌봄 요청 마지막 날짜  -> 모바일 캘린더 
 	private int status; // 모집 중(0)/모집 마감(1)/완료(2)
+	private int type; // 장애인(0) / 아동(1) / 노인(2)
 	
 	public int getPost_id() {
 		return post_id;
@@ -70,6 +71,12 @@ public class Post implements Serializable{
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

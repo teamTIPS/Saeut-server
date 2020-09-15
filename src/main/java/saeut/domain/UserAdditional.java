@@ -9,23 +9,40 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class UserAdditional implements Serializable{
 	
-	private int ranks;
+	private String id; // (FK) - PK
+	private String nickname; 
+	private String pic;
+	private int rank;
 	private float score;
 	private String description;
-	private Date birth;
 	private String zipcode;
 	private String address1;
 	private String address2;
-	private String id; // (FK) - PK
-	private int type;
-	private String pic;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public int getRank() {
-		return ranks;
+		return rank;
 	}
 	public void setRank(int rank) {
-		this.ranks = rank;
+		this.rank = rank;
 	}
 	public float getScore() {
 		return score;
@@ -38,18 +55,6 @@ public class UserAdditional implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public int getRanks() {
-		return ranks;
-	}
-	public void setRanks(int ranks) {
-		this.ranks = ranks;
-	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
 	}
 	public String getZipcode() {
 		return zipcode;
@@ -69,23 +74,12 @@ public class UserAdditional implements Serializable{
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public String getPic() {
-		return pic;
-	}
-	public void setPic(String pic) {
-		this.pic = pic;
+	
+	@Override
+	public String toString() {
+		return "UserAdditional [id=" + id + ", nickname=" + nickname + ", pic=" + pic + ", rank=" + rank + ", score="
+				+ score + ", description=" + description + ", zipcode=" + zipcode + ", address1=" + address1
+				+ ", address2=" + address2 + "]";
 	}
 	
 }

@@ -2,9 +2,13 @@ package saeut.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Auth {
+	
 	private String id;
 	private String refreshToken;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date refreshToken_expireTime;
 	
 	public String getId() {

@@ -4,19 +4,19 @@
   <cache />
   
 	  <select id="getUserEssentialByUserId" resultType="UserEssential">
-	    select id, password, name, nickname, phone
+	    select id, password, name, phone, birth, gender, perm1
 		from UserEssential 
 		where id = #{id}
 	  </select>
 	  
   	  <select id="getUserEssentialByUserIdAndPassword" resultType="UserEssential">
-	    select id, password, name, nickname, phone
+	    select id, password, name, phone, birth, gender, perm1
 		from UserEssential 
 		where id = #{id} and password = #{password}
   	  </select>
 	  
 	  <select id="getAllUserEssential" resultType="UserEssential">
-	    select id, password, name, nickname, phone 
+	    select id, password, name, phone, birth, gender, perm1
 		from UserEssential
 	  </select>
 	  
@@ -25,13 +25,13 @@
 	  </select>
 	  
 	   <insert id="insertUserEssential"  parameterType="UserEssential">
-		 insert into UserEssential(id, password, name, nickname, phone)
-		 values(#{id}, #{password}, #{name}, #{nickname}, #{phone})
+		 insert into UserEssential(id, password, name, phone, birth, gender, perm1)
+		 values(#{id}, #{password}, #{name}, #{phone}, #{birth}, #{gender}, #{perm1})
 		</insert>
 	
    	  <update id="modUserEssential"  parameterType="UserEssential">
 	     update UserEssential
-	     set password=#{password}, name=#{name}, nickname=#{nickname}, phone=#{phone}}
+	     set password=#{password}, name=#{name}, phone=#{phone}, birth=#{birth}, gender=#{gender}, perm1=#{perm1}}
 	     where	id=#{id}
    	  </update> 
      

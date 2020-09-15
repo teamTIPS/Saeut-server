@@ -4,26 +4,26 @@
   <cache />
   
 	  <select id="getUserAdditionalByUserId" resultType="UserAdditional">
-	    select id, type, pic, rank, score, description, birth, zipcode, address1, address2
+	    select id, nickname, pic, rank, score, description, zipcode, address1, address2
 		from UserAdditional 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllUserAdditional" resultType="UserAdditional">
-	    select id, type, pic, rank, score, description, birth, zipcode, address1, address2
+	    select  id, nickname, pic, rank, score, description, zipcode, address1, address2
 		from UserAdditional
 	  </select>
 	  
 	   <insert id="insertUserAdditional"  parameterType="UserAdditional">
-		 insert into UserAdditional(id, type, pic, rank, score, description, birth, zipcode, address1, address2)
-		 values(#{id}, #{type}, #{pic}, #{rank}, #{score}, #{description}, 
-		 			#{birth}, #{zipcode}, #{address1}, #{address2})
+		 insert into UserAdditional( id, nickname, pic, rank, score, description, zipcode, address1, address2)
+		 values(#{id}, #{nickname}, #{pic}, #{rank}, #{score}, #{description}, 
+		 			 #{zipcode}, #{address1}, #{address2})
 		</insert>
 	
    	  <update id="modUserAdditional"  parameterType="UserAdditional">
 	     update UserAdditional
-	     set  type=#{type}, pic=#{pic}, rank=#{ranks}, score=#{score}, description=#{description},
-	     	birth=#{birth}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}
+	     set   nickname=#{nickname}, pic=#{pic}, rank=#{rank}, score=#{score}, description=#{description},
+	     		zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}
 	     where id=#{id}
    	  </update> 
      

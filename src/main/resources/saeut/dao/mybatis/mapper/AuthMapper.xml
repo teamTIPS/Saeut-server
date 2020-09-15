@@ -6,7 +6,7 @@
   <select id="getAllAuth" resultType="Auth">
   	select id, refreshToken, refreshToken_expireTime
   	from Auth
-  </select>
+  </select> 
   
    <select id="getAuthByUserId" parameterType="String">
   	select id, refreshToken, refreshToken_expireTime

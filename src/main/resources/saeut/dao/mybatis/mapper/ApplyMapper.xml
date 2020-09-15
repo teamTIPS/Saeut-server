@@ -4,25 +4,25 @@
   <cache />
   
   <select id="getAllApply" resultType="Apply">
-  	select post_id, account_id, introduce
+  	select id, post_id, introduce
   	from Apply
   </select>
   
    <select id="getApplytByUserId" parameterType="String">
-  	select post_id, account_id, introduce
+  	select id, post_id, introduce
   	from Apply
-  	where account_id=#{account_id}
+  	where id=#{id}
   </select>
   
   <select id="getApplytByPostId" parameterType="String">
-  	select post_id, account_id, introduce
+  	select post_id, id, introduce
   	from Apply
   	where post_id=#{post_id}
   </select>
   
   <insert id="insertApply" parameterType="Apply">
-  	insert into Apply(post_id, account_id, introduce)
-  	values(#{post_id}, #{account_id},#{introduce})
+  	insert into Apply(post_id, id, introduce)
+  	values(#{post_id}, #{id},#{introduce})
   </insert>
      
   <delete id="removeApply"  parameterType="String">

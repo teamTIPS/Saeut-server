@@ -8,7 +8,7 @@
 	  	from Post
   	</select>
   
-   	<select id="getPostByUserId" parameterType="String">
+   	<select id="getPostByUserId" parameterType="String" resultType="Post">
 	  	select post_id, id, title, post_date, contents, start_date, due_date, status, type
 	  	from Post
 	  	where id=#{id}

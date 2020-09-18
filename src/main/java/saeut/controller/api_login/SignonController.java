@@ -73,7 +73,7 @@ public class SignonController {
 				}
 			}catch(Exception e) { 
 				//로그인 실패 응답 시에 아이디가 문제인지 비번이 문제인지 아예 존재하지 않는 회원인지 구분해서 응답하기 
-				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 			}
 		}
 		return resEntity;

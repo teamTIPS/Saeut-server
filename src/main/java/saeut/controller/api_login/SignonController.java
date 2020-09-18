@@ -149,13 +149,12 @@ public class SignonController {
 	      return ResponseEntity.ok(  new AuthenticationResponse(token));
 	   }
 	
-	@PostMapping("/check/id/{id}")
-	public ResponseEntity<String> isDuplicatedId (@RequestBody LoginInfo loginInfo) { 
+	@GetMapping("/valid/id/{id}")
+	public ResponseEntity<String> isDuplicatedId (@PathVariable String id) { 
 		ResponseEntity<String>  resEntity = null;
-		int UserEssential_result = myPageFacade.isDuplicated(loginInfo);
-		if (UserEssential_result == 1) // 중복된 아이디 존재 시 false 반환 
-			resEntity = ResponseEntity.status(HttpStatus.OK).body("false");			
-		else  // 중복된 아이디가 없을 시 true 반환
+		if (myPageFacade.isIdDuplicated(id)) // 중복된 아이디 존재 시
+			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("false");	
+		else 
 			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");
 		return resEntity;
 	}	
@@ -163,7 +162,7 @@ public class SignonController {
 	@GetMapping("/valid/nickname/{nickname}")
 	public ResponseEntity<String> isAvailableNick (@PathVariable String nickname) { 
 		ResponseEntity<String>  resEntity = null;
-		if (myPageFacade.isNickDuplicated(nickname)) // 중복된 아이디 존재 시
+		if (myPageFacade.isNickDuplicated(nickname)) // 중복된 닉네임 존재 시
 			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("false");	
 		else 
 			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");

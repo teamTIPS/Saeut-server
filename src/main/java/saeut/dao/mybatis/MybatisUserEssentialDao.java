@@ -28,9 +28,8 @@ public class MybatisUserEssentialDao implements UserEssentialDao {
 //	};
 	
 	@Override
-	public int isDuplicated(LoginInfo loginInfo) {
-		// TODO Auto-generated method stub
-		return UserEssentialMapper.isDuplicated(loginInfo);
+	public boolean isIdDuplicated(String id) {
+		return UserEssentialMapper.isIdDuplicated(id);
 	}
 	
 	@Override

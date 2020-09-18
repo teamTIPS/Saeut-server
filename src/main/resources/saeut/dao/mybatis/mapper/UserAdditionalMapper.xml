@@ -36,7 +36,7 @@
 	    select case when (count(nickname) > 0) 
 		then true else false end as 'isNickDuplicated'
 		from UserAdditional 
-		where nickname = #{nickname};
+		where nickname = #{nickname}
 	  </select>
 	  	
   </mapper>

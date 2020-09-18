@@ -19,7 +19,7 @@ public interface MyPageFacade {
 	void insertUserEssential(UserEssential UserEssential);
 	void modUserEssential(UserEssential UserEssential);
 	void removeUserEssential(String id);
-	int isDuplicated(LoginInfo loginInfo);
+	boolean isIdDuplicated(String id);
 	/////////////////////////////////////////////////////////////////////////
 	/* Certificate */
 	/////////////////////////////////////////////////////////////////////////	
@@ -38,5 +38,6 @@ public interface MyPageFacade {
 	void modUserAdditional(UserAdditional UserAdditional);
 	void removeUserAdditional(String userId);
 	boolean isNickDuplicated(String nickname);
+
 
 }

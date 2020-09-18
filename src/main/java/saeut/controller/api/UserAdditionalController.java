@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,12 +24,12 @@ import saeut.domain.UserAdditional;
 import saeut.service.facade.MyPageFacade;
 
 @RestController
-@RequestMapping("/UserAdditional")
+@RequestMapping("/user/additional")
 public class UserAdditionalController {
 	@Autowired
 	private MyPageFacade myPageFacade;
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping("/{id}")
 	public ResponseEntity<UserAdditional> findUserAdditional (@PathVariable("id") String id) {
 		
 		UserAdditional UserAdditional = myPageFacade.getUserAdditionalByUserId(id);
@@ -33,7 +37,7 @@ public class UserAdditionalController {
 		return new ResponseEntity(UserAdditional,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping
 	public ResponseEntity<List<UserAdditional>> findAllUserAdditional () {
 		
 		List<UserAdditional> UserAdditionals = myPageFacade.getAllUserAdditional();
@@ -41,7 +45,7 @@ public class UserAdditionalController {
 		return new ResponseEntity(UserAdditionals,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@PostMapping
 	public ResponseEntity<String> addUserAdditional (@RequestBody UserAdditional UserAdditional) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -54,8 +58,8 @@ public class UserAdditionalController {
 		return resEntity;
 	}	
 	
-	//수정하기
-	@RequestMapping(value = "/mod", method = RequestMethod.PUT)
+
+	@PutMapping
 	public ResponseEntity<String> modUserAdditional (@RequestBody UserAdditional UserAdditional) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -68,8 +72,8 @@ public class UserAdditionalController {
 		return resEntity;
 	}
 	
-	//삭제하기
-	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
+	
+	@DeleteMapping("/{id}")
 	public ResponseEntity<String> removeUserAdditional (@PathVariable("id") String id) {
 		ResponseEntity<String>  resEntity = null;
 		try {
@@ -78,12 +82,7 @@ public class UserAdditionalController {
 		}catch(Exception e) {
 			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		
 		return resEntity;
 	}	
 	
-	
-	
-	
-
 }

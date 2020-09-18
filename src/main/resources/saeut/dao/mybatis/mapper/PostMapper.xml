@@ -13,6 +13,18 @@
 	  	from Post
 	  	where id=#{id}
   	</select>
+  	
+  	<select id="getPostByType" parameterType="int" resultType="Post">
+	  	select id, post_id, id, title, post_date, contents, start_date, due_date, status
+	  	from Post
+	  	where type=#{type}
+  	</select>
+  	
+  	<select id="getPostByTitle" parameterType="String" resultType="Post">
+	  	select id, post_id, id, post_date, contents, start_date, due_date, status, type
+	  	from Post
+	  	where title like CONCAT('%',#{title},'%')
+  	</select>
   
   	<insert id="insertPost" parameterType="Post">
   	insert into Post(post_id, id, title, post_date, contents, start_date, due_date, status, type)

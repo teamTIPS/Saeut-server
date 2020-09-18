@@ -48,6 +48,23 @@ public class PostController {
 		return new ResponseEntity(posts,HttpStatus.OK);
 	}
 	
+	@GetMapping("type/{type}")
+	public ResponseEntity<List<Post>> findPostByType (@PathVariable("type") int type) {
+		
+		List<Post> posts = postFacade.getPostByType(type);
+		
+		return new ResponseEntity(posts,HttpStatus.OK);
+	}
+	
+	@GetMapping("title/{title}")
+	public ResponseEntity<List<Post>> findPostByTitle (@PathVariable("title") String title) {
+		
+		List<Post> posts = postFacade.getPostByTitle(title);
+		
+		return new ResponseEntity(posts,HttpStatus.OK);
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity<String> addPost (@RequestBody Post post) {
 		ResponseEntity<String>  resEntity = null;

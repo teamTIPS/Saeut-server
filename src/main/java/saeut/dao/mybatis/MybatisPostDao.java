@@ -3,6 +3,7 @@ package saeut.dao.mybatis;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import saeut.dao.PostDao;
@@ -24,6 +25,18 @@ public class MybatisPostDao implements PostDao{
 	public List<Post> getPostByUserId(String userId) {
 		return postMapper.getPostByUserId(userId);
 	}
+	
+	@Override
+	public List<Post> getPostByType(int type) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return postMapper.getPostByType(type);
+	}
+
+	@Override
+	public List<Post> getPostByTitle(String title) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return postMapper.getPostByTitle(title);
+	}
 
 	@Override
 	public void insertPost(Post Post) {
@@ -40,6 +53,8 @@ public class MybatisPostDao implements PostDao{
 		postMapper.removePost(post_id);
 		
 	}
+
+	
 
 	
 }

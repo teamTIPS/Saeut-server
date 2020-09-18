@@ -13,6 +13,12 @@ public interface PostDao {
 			
 	// userId로 Post 가져오기
 	List<Post> getPostByUserId(String userId) throws DataAccessException;
+	
+	// type으로 Post 가져오기
+	List<Post> getPostByType(int type) throws DataAccessException;
+	
+	// title로 Post 가져오기
+	List<Post> getPostByTitle(String title) throws DataAccessException;
 			
 	// Post 추가하기
 	void insertPost(Post Post) throws DataAccessException;

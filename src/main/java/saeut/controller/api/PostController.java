@@ -37,7 +37,7 @@ public class PostController {
 		return new ResponseEntity(posts,HttpStatus.OK);
 	}
 	
-	@GetMapping("type/{type}")
+	@GetMapping("/type/{type}")
 	public ResponseEntity<List<Post>> findPostByType (@PathVariable("type") int type) {
 		
 		List<Post> posts = postFacade.getPostByType(type);
@@ -45,7 +45,7 @@ public class PostController {
 		return new ResponseEntity(posts,HttpStatus.OK);
 	}
 	
-	@GetMapping("title/{title}")
+	@GetMapping("/title/{title}")
 	public ResponseEntity<List<Post>> findPostByTitle (@PathVariable("title") String title) {
 		
 		List<Post> posts = postFacade.getPostByTitle(title);

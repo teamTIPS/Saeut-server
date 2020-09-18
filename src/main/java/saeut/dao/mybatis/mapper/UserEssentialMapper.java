@@ -14,7 +14,7 @@ public interface UserEssentialMapper {
 	UserEssential getUserEssentialByUserIdAndPassword(LoginInfo loginInfo);	
 	
 	// userID로 중복 검사하기
-	int isDuplicated(LoginInfo loginInfo);
+	boolean isIdDuplicated(String id);
 	
 	// userId로 UserEssential 가져오기
 	UserEssential getUserEssentialByUserId(String userId);

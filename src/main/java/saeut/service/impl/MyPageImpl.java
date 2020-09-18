@@ -48,12 +48,10 @@ public class MyPageImpl implements MyPageFacade{
 	};
 	
 	@Override
-	public int isDuplicated(LoginInfo loginInfo) {
-		// TODO Auto-generated method stub
-		return UserEssentialDao.isDuplicated(loginInfo);
+	public boolean isIdDuplicated(String id) {
+		return UserEssentialDao.isIdDuplicated(id);
 	}
 
-	
 	
 	@Override
 	public List<UserEssential> getAllUserEssential(){

@@ -40,8 +40,9 @@
 	   where id=#{id}
 	  </delete>
 	  
-	  <select id="isDuplicated" resultType="int">
-	    select COUNT(*)
+	  <select id="isIdDuplicated" parameterType="String" resultType="boolean">
+	    select case when (count(id) > 0) 
+		then true else false end as 'isIdDuplicated'
 		from UserEssential 
 		where id = #{id}
 	  </select>

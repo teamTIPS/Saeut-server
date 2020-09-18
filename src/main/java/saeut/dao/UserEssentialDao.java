@@ -17,7 +17,7 @@ public interface UserEssentialDao {
 	UserEssential getUserEssentialByUserIdAndPassword(LoginInfo loginInfo);		
 	
 	// userID로 중복 체크하기
-	int isDuplicated(LoginInfo loginInfo);
+	boolean isIdDuplicated(String id);
 	
 	// 모든UserEssential 가져오기
 	List<UserEssential> getAllUserEssential() throws DataAccessException;

@@ -22,4 +22,7 @@ public interface UserAdditionalDao {
 	
 	// userId로 UserAdditional 삭제하기
 	void removeUserAdditional(String userId) throws DataAccessException;
+	
+	//닉네임 중복 체크 
+	boolean isNickDuplicated(String nickname) throws DataAccessException;
 }

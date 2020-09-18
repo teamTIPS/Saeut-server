@@ -2,6 +2,8 @@ package saeut.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import saeut.domain.UserAdditional;
 
 public interface UserAdditionalMapper {
@@ -21,4 +23,6 @@ public interface UserAdditionalMapper {
 	// userId로 UserAdditional 삭제하기
 	void removeUserAdditional(String userId);
 	
+	//닉네임 중복 체크 
+	boolean isNickDuplicated(String nickname) throws DataAccessException;
 }

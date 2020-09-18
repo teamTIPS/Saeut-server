@@ -142,5 +142,10 @@ public class MyPageImpl implements MyPageFacade{
 	public void removeUserAdditional(String userId) {
 		UserAdditionalDao.removeUserAdditional(userId);
 	}
+
+	@Override
+	public boolean isNickDuplicated(String nickname) {
+		return UserAdditionalDao.isNickDuplicated(nickname);
+	}
 	
 }

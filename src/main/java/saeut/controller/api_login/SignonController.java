@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,7 +28,6 @@ import saeut.service.facade.AuthFacade;
 
 
 @RestController
-@RequestMapping("/signon")
 public class SignonController {  
 //	로그인 및 회원가입 컨트롤러  
 	
@@ -44,7 +45,7 @@ public class SignonController {
 	 * 		2-2. 클라이언트에게 at와 rt 응답 
 	 * 		2-3. rt DB에 저장
 	 */
-	@PostMapping("/authenticate")   
+	@PostMapping("/signon/authenticate")   
 	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
 		UserEssential UserEssential_result = myPageFacade.getUserEssentialByUserIdAndPassword(loginInfo);
@@ -85,7 +86,7 @@ public class SignonController {
 	 * 만약 만료된 refresh token로 요청이 들어온다면 -> "오류를 반환"하여 사용자에게 새로 로그인을 요구한다.
 	 * 
 	 */
-	@PostMapping( value = "/get_access_token")
+	@PostMapping( value = "/signon/get_access_token")
 	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt_request jwt) throws Exception{
 		// at, rt를 바디로 전달 ,, -> at와 rt 둘다 전달 왜? at는 해당 유저의 토큰인지 확인하기위함.... 
 		// 일단 at로 해당 유저인것을 확인하지 않고 rt만 가지고  유저정보 불러오는데 수정필요할수도있는 부분 
@@ -109,7 +110,7 @@ public class SignonController {
 	 *	Refresh Token의 만료 기간이 1/2남았을 때, Refresh Token을 update해준다.  
 	 *  헤더에 at만 넘어옴 -> rt를 새로 발급해서 디비에 저장(원래 있던 rt update) 및 갱신한 rt 응답하기 
 	 */
-	@PostMapping( value = "/get_refresh_token")
+	@PostMapping( value = "/signon/get_refresh_token")
 	public ResponseEntity<AuthenticationResponse> get_refresh_token(
 			@RequestHeader("Authorization") String at) throws Exception{
 		//요청 : 헤더에 at를 전달해준다..바디는 널이다.. 
@@ -148,8 +149,8 @@ public class SignonController {
 	      return ResponseEntity.ok(  new AuthenticationResponse(token));
 	   }
 	
-	@PostMapping("/checkid")
-	public ResponseEntity<String> isDuplicated (@RequestBody LoginInfo loginInfo) { 
+	@PostMapping("/check/id/{id}")
+	public ResponseEntity<String> isDuplicatedId (@RequestBody LoginInfo loginInfo) { 
 		ResponseEntity<String>  resEntity = null;
 		int UserEssential_result = myPageFacade.isDuplicated(loginInfo);
 		if (UserEssential_result == 1) // 중복된 아이디 존재 시 false 반환 
@@ -158,7 +159,16 @@ public class SignonController {
 			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");
 		return resEntity;
 	}	
-
+	
+	@GetMapping("/valid/nickname/{nickname}")
+	public ResponseEntity<String> isAvailableNick (@PathVariable String nickname) { 
+		ResponseEntity<String>  resEntity = null;
+		if (myPageFacade.isNickDuplicated(nickname)) // 중복된 아이디 존재 시
+			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("false");	
+		else 
+			resEntity = ResponseEntity.status(HttpStatus.OK).body("true");
+		return resEntity;
+	}	
 	
 	
 	

@@ -32,5 +32,11 @@
 	   where  id=#{id}
 	  </delete>
 	  
-  
+   	  <select id="isNickDuplicated" parameterType="String" resultType="boolean">
+	    select case when (count(nickname) > 0) 
+		then true else false end as 'isNickDuplicated'
+		from UserAdditional 
+		where nickname = #{nickname};
+	  </select>
+	  	
   </mapper>

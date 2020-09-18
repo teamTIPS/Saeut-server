@@ -39,6 +39,11 @@ public class MybatisUserAdditionalDao implements UserAdditionalDao {
 	@Override
 	public void removeUserAdditional(String userId) {
 		UserAdditionalMapper.removeUserAdditional(userId);
+	}
+
+	@Override
+	public boolean isNickDuplicated(String nickname) throws DataAccessException {
+		return UserAdditionalMapper.isNickDuplicated(nickname);
 	};
 	
 	

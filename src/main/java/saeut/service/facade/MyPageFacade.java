@@ -37,6 +37,6 @@ public interface MyPageFacade {
 	void insertUserAdditional(UserAdditional UserAdditional);
 	void modUserAdditional(UserAdditional UserAdditional);
 	void removeUserAdditional(String userId);
-
+	boolean isNickDuplicated(String nickname);
 
 }

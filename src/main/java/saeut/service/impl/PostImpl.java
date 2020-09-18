@@ -39,6 +39,18 @@ public class PostImpl implements PostFacade {
 	public List<Post> getPostByUserId(String userId) {
 		return postDao.getPostByUserId(userId);
 	}
+	
+	@Override
+	public List<Post> getPostByType(int type) {
+		// TODO Auto-generated method stub
+		return postDao.getPostByType(type);
+	}
+
+	@Override
+	public List<Post> getPostByTitle(String title) {
+		// TODO Auto-generated method stub
+		return postDao.getPostByTitle(title);
+	}
 
 	@Override
 	public void insertPost(Post Post) {
@@ -65,5 +77,7 @@ public class PostImpl implements PostFacade {
 	public List<CheckList> getTop6CheckList() {
 		return checkListDao.getTop6CheckList();
 	}
-
+	
 }
+
+

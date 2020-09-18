@@ -13,6 +13,8 @@ public interface PostFacade {
 	
 	List<Post> getAllPost();
 	List<Post> getPostByUserId(String userId);
+	List<Post> getPostByType(int type);
+	List<Post> getPostByTitle(String title);
 	void insertPost(Post Post);
 	void modPost(Post Post);
 	void removePost(int post_id);

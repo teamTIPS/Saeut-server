@@ -8,13 +8,13 @@
   	from Apply
   </select>
   
-   <select id="getApplytByUserId" parameterType="String">
+   <select id="getApplyByUserId" parameterType="String">
   	select id, post_id, introduce
   	from Apply
   	where id=#{id}
   </select>
   
-  <select id="getApplytByPostId" parameterType="String">
+  <select id="getApplyByPostId" parameterType="int">
   	select post_id, id, introduce
   	from Apply
   	where post_id=#{post_id}
@@ -25,10 +25,15 @@
   	values(#{post_id}, #{id},#{introduce})
   </insert>
      
-  <delete id="removeApply"  parameterType="String">
-	   delete from Apply
-	   where post_id=#{post_id}
+  <delete id="removeApply"  parameterType="int">
+	delete from Apply
+	where post_id=#{post_id}
   </delete>
   	  
+  <select id="countApplyByPostId" parameterType="int" resultType="int"> <!--하나의 게시물에 대하여 신청자 수 조회  -->
+  	select count((distinct))post_id)
+  	from Apply
+  	where post_id=#{post_id}
+  </select>
   
   </mapper>

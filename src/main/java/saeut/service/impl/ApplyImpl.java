@@ -25,13 +25,13 @@ public class ApplyImpl implements ApplyFacade{
 	}
 
 	@Override
-	public List<Apply> getApplytByUserId(String userId) {
-		return applyDao.getApplytByUserId(userId);
+	public List<Apply> getApplyByUserId(String userId) {
+		return applyDao.getApplyByUserId(userId);
 	}
 
 	@Override
-	public List<Apply> getApplytByPostId(String postId) {
-		return applyDao.getApplytByPostId(postId);
+	public List<Apply> getApplyByPostId(int postId) {
+		return applyDao.getApplyByPostId(postId);
 	}
 
 	@Override
@@ -42,7 +42,11 @@ public class ApplyImpl implements ApplyFacade{
 	@Override
 	public void removeApply(int postId) {
 		applyDao.removeApply(postId);
-		
+	}
+
+	@Override
+	public int countApplyByPostId(int postId) {
+		return applyDao.countApplyByPostId(postId);
 	}
 
 }

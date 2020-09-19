@@ -22,13 +22,13 @@ public class MybatisApplyDao implements ApplyDao{
 	}
 
 	@Override
-	public List<Apply> getApplytByUserId(String userId) throws DataAccessException {
-		return applyMapper.getApplytByUserId(userId);
+	public List<Apply> getApplyByUserId(String userId) throws DataAccessException {
+		return applyMapper.getApplyByUserId(userId);
 	}
 
 	@Override
-	public List<Apply> getApplytByPostId(String postId) throws DataAccessException {
-		return applyMapper.getApplytByPostId(postId);
+	public List<Apply> getApplyByPostId(int postId) throws DataAccessException {
+		return applyMapper.getApplyByPostId(postId);
 	}
 
 	@Override
@@ -40,6 +40,11 @@ public class MybatisApplyDao implements ApplyDao{
 	@Override
 	public void removeApply(int postId) throws DataAccessException {
 		applyMapper.removeApply(postId);
+	}
+	
+	@Override
+	public int countApplyByPostId(int postId) throws DataAccessException {
+		return applyMapper.countApplyByPostId(postId);
 	}
 
 }

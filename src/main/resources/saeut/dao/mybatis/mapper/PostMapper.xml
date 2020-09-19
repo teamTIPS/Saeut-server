@@ -27,9 +27,8 @@
   	</select>
   
   	<insert id="insertPost" parameterType="Post">
-  	insert into Post(post_id, id, title, post_date, contents, start_date, due_date, status, type)
-  	values(#{post_id}, #{id},#{title},#{post_date},#{contents},
-  			#{start_date},#{due_date}, #{status}, #{type})
+  	insert into Post(id, title, contents, start_date, due_date, status, type)
+  	values(#{id},#{title},#{contents}, #{start_date},#{due_date}, #{status}, #{type})
   	</insert>
   
   	<update id="modPost"  parameterType="Post">

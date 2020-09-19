@@ -39,10 +39,8 @@ public class UserEssentialController {
 	public ResponseEntity<String> findNickname (@PathVariable("id") String id) {
 		
 		 String nickname = myPageFacade.getNicknameByUserID(id);
-		 HttpHeaders responseHeaders = new HttpHeaders();
-		 responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
-		 return new ResponseEntity(nickname,responseHeaders, HttpStatus.OK);
+		 return new ResponseEntity(nickname, HttpStatus.OK);
 	}
 	
 	@GetMapping

@@ -34,7 +34,7 @@ public class UserAdditionalController {
 		
 		UserAdditional UserAdditional = myPageFacade.getUserAdditionalByUserId(id);
 		
-		return new ResponseEntity(UserAdditional,HttpStatus.OK);
+		return new ResponseEntity<UserAdditional>(UserAdditional,HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -42,7 +42,7 @@ public class UserAdditionalController {
 		
 		List<UserAdditional> UserAdditionals = myPageFacade.getAllUserAdditional();
 		
-		return new ResponseEntity(UserAdditionals,HttpStatus.OK);
+		return new ResponseEntity<List<UserAdditional>>(UserAdditionals,HttpStatus.OK);
 	}
 	
 	@PostMapping
@@ -50,9 +50,9 @@ public class UserAdditionalController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.insertUserAdditional(UserAdditional);
-			resEntity =new ResponseEntity("ADD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("ADD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -64,9 +64,9 @@ public class UserAdditionalController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.modUserAdditional(UserAdditional);
-			resEntity =new ResponseEntity("MOD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("MOD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -78,9 +78,9 @@ public class UserAdditionalController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.removeUserAdditional(id);
-			resEntity =new ResponseEntity("REMOVE_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("REMOVE_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		return resEntity;
 	}	

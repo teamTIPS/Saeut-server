@@ -30,9 +30,9 @@ public class UserEssentialController {
 		
 		UserEssential UserEssential = myPageFacade.getUserEssentialByUserId(id);
 		if(!(UserEssential==null))
-			return new ResponseEntity(UserEssential,HttpStatus.OK);
+			return new ResponseEntity<UserEssential>(UserEssential,HttpStatus.OK);
 		else
-			return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<UserEssential>(HttpStatus.BAD_REQUEST);
 	}
 	
 	@GetMapping("/nickname/{id}")
@@ -42,7 +42,7 @@ public class UserEssentialController {
 		 HttpHeaders responseHeaders = new HttpHeaders();
 		 responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
-		 return new ResponseEntity(nickname,responseHeaders, HttpStatus.OK);
+		 return new ResponseEntity<String>(nickname,responseHeaders, HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -50,7 +50,7 @@ public class UserEssentialController {
 		
 		List<UserEssential> list = myPageFacade.getAllUserEssential();
 		
-		return new ResponseEntity(list,HttpStatus.OK);
+		return new ResponseEntity<List<UserEssential>>(list,HttpStatus.OK);
 	}
 	
 	@PostMapping
@@ -58,9 +58,9 @@ public class UserEssentialController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.insertUserEssential(UserEssential);
-			resEntity =new ResponseEntity("ADD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("ADD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -71,9 +71,9 @@ public class UserEssentialController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.modUserEssential(UserEssential);
-			resEntity =new ResponseEntity("MOD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("MOD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -84,9 +84,9 @@ public class UserEssentialController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			myPageFacade.removeUserEssential(id);
-			resEntity =new ResponseEntity("REMOVE_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("REMOVE_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;

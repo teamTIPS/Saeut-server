@@ -1,20 +1,20 @@
 package saeut.controller.api;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import saeut.domain.UserEssential;
 import saeut.service.facade.MyPageFacade;
 
@@ -24,7 +24,6 @@ public class UserEssentialController {
 	@Autowired
 	private MyPageFacade myPageFacade;
 	
-
 	@GetMapping("/{id}")
 	public ResponseEntity<UserEssential> findUserEssential (@PathVariable("id") String id) {
 		
@@ -54,11 +53,17 @@ public class UserEssentialController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> addUser (@RequestBody UserEssential UserEssential) {
+	public ResponseEntity<String> addUser (@Valid@RequestBody UserEssential UserEssential, BindingResult bindingResult) {
 		ResponseEntity<String>  resEntity = null;
 		try {
-			myPageFacade.insertUserEssential(UserEssential);
-			resEntity =new ResponseEntity<String>("ADD_SUCCEEDED",HttpStatus.OK);
+			if(bindingResult.hasErrors()){
+	            System.out.print("Binding Result has error!");
+	            resEntity = new ResponseEntity<String>("id must be email format", HttpStatus.BAD_REQUEST);
+	        }
+			else {
+				myPageFacade.insertUserEssential(UserEssential);
+				resEntity =new ResponseEntity<String>("ADD_SUCCEEDED",HttpStatus.OK);
+			}
 		}catch(Exception e) {
 			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}

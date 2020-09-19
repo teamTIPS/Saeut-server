@@ -4,6 +4,9 @@ import java.io.Serializable;
 //import java.sql.Date; 둘중에 어떤건지 다시 체크하기 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /*
@@ -13,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class UserEssential implements Serializable {
 
 	/* Private Fields */
+	@NotBlank
+	@Email
     private String id;
     private String password;
     private String name;

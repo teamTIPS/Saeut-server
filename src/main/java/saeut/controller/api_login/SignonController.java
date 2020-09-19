@@ -1,6 +1,5 @@
 package saeut.controller.api_login;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import saeut.domain.LoginInfo;
 import saeut.domain.UserAdditional;
@@ -45,7 +43,7 @@ public class SignonController {
 	 * 		2-2. 클라이언트에게 at와 rt 응답 
 	 * 		2-3. rt DB에 저장
 	 */
-	@PostMapping("/signon/authenticate")   
+	@PostMapping("/signon")   
 	public ResponseEntity<AuthenticationResponse> signIn (@RequestBody LoginInfo loginInfo) throws CommonException{ 
 		ResponseEntity<AuthenticationResponse> resEntity = null;
 		UserEssential UserEssential_result = myPageFacade.getUserEssentialByUserIdAndPassword(loginInfo);
@@ -78,13 +76,40 @@ public class SignonController {
 		}
 		return resEntity;
 	}
+	/*
+	 * RT를 넘겨주면 로그인 해주고 -> AT와 유저 객체넘겨준다. 
+	 * 1. RT 유효한지 검사 (만료시간 및 디비에서 확인)
+	 * 2. RT 유효하면 로그인 성공 및 AT와 유저객체 응답으로 보내준다.
+	 * 3. RT 유효하지 않으면 400 error 
+	 */
+	@PostMapping("/signon/refreshToken")   
+	public ResponseEntity<AuthenticationResponse> signInByRT (@RequestBody Jwt_request jwt) throws CommonException{ 
+		ResponseEntity<AuthenticationResponse> resEntity = null;
+		String rt = jwt.getRefreshToken();
+		String subject = this.jwtUtil.extractUsername(rt, TOKEN_TYPE.REFRESH_TOKEN);
+		final UserDetails user = this.jwtUtil.getUserDetailService().loadUserByUsername(subject);
+		
+		UserEssential userEssential = myPageFacade.getUserEssentialByUserId(user.getUsername());
+		UserAdditional userAdditional = myPageFacade.getUserAdditionalByUserId(user.getUsername());
+	
+		if(this.jwtUtil.validateToken(rt,user,TOKEN_TYPE.REFRESH_TOKEN)) { //유효하면 
+			try {  //근데rt로 원래 있던게 아니라 at 새로 발급해주기 
+				Jwt newAT = this.jwtUtil.makeReJwt(rt);
+				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(newAT, userEssential, userAdditional));
+			}catch(Exception e) { 
+				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			}
+		}else { //rt가 유효하지 않으면 
+			resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		return resEntity;
+	}
 	
 	/*
 	 * access token의 만료시간이 다되어 "오류를 전달받은" 클라이언트가 요청하는 메소드이다. -> 만료 응답 .. 
 	 * 이떄, 클라이언트는 refresh token을 이용하여 access token의 재발급을 요청한다.
 	 * 서버는 유효한 refresh token으로 요청이 들어오면 -> 새로운 access token을 발급하여 응답한다.
 	 * 만약 만료된 refresh token로 요청이 들어온다면 -> "오류를 반환"하여 사용자에게 새로 로그인을 요구한다.
-	 * 
 	 */
 	@PostMapping( value = "/signon/get_access_token")
 	public ResponseEntity<AuthenticationResponse> get_access_token(@RequestBody Jwt_request jwt) throws Exception{

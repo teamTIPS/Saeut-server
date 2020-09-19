@@ -279,7 +279,7 @@ public class JwtComponent {
 
 	
 	/**
-	 *  Access 토큰만 생성
+	 *  Refresh 토큰만 생성
 	 * @param userDetails
 	 * @return
 	 */

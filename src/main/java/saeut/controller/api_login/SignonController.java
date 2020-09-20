@@ -23,6 +23,7 @@ import saeut.security.JwtComponent;
 import saeut.security.JwtComponent.TOKEN_TYPE;
 import saeut.service.facade.MyPageFacade;
 import saeut.service.facade.AuthFacade;
+import saeut.error.LoginInvalidException;
 
 
 @RestController
@@ -50,28 +51,24 @@ public class SignonController {
 		UserAdditional UserAdditional_result = myPageFacade.getUserAdditionalByUserId(loginInfo.getId());
 	
 		if (UserEssential_result == null) { 
-				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+				//resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			throw new LoginInvalidException("Login invalid error");
 		}else {  
-			try { 
-				// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
-				Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
-				resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result, UserAdditional_result));
-				// 성공한 아이디와 RT를 데이터베이스에 저장
-				Auth auth = new Auth();
-				auth.setId(loginInfo.getId());
-				auth.setRefreshToken(token.getRefreshToken());
-				auth.setRefreshToken_expiretime(this.jwtUtil.extractExpiration(token.getRefreshToken(), TOKEN_TYPE.REFRESH_TOKEN));
-				if(authFacade.isDuplicated(loginInfo.getId())==0) {
-					// 저장되어 있는 RT값이 없는 경우 신규 생성
-					authFacade.insertAuth(auth);
-				}
-				else {
-					// 이미 저장되어 있는 RT값이 존재하는 경우 새로운 RT정보값으로 수정
-					authFacade.modAuth(auth);
-				}
-			}catch(Exception e) { 
-				//로그인 실패 응답 시에 아이디가 문제인지 비번이 문제인지 아예 존재하지 않는 회원인지 구분해서 응답하기 
-				resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
+			Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
+			resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result, UserAdditional_result));
+			// 성공한 아이디와 RT를 데이터베이스에 저장
+			Auth auth = new Auth();
+			auth.setId(loginInfo.getId());
+			auth.setRefreshToken(token.getRefreshToken());
+			auth.setRefreshToken_expiretime(this.jwtUtil.extractExpiration(token.getRefreshToken(), TOKEN_TYPE.REFRESH_TOKEN));
+			if(authFacade.isDuplicated(loginInfo.getId())==0) {
+				// 저장되어 있는 RT값이 없는 경우 신규 생성
+				authFacade.insertAuth(auth);
+			}
+			else {
+				// 이미 저장되어 있는 RT값이 존재하는 경우 새로운 RT정보값으로 수정
+				authFacade.modAuth(auth);
 			}
 		}
 		return resEntity;

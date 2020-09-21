@@ -45,8 +45,18 @@ public class ApplyImpl implements ApplyFacade{
 	}
 
 	@Override
-	public int countApplyByPostId(int postId) {
-		return applyDao.countApplyByPostId(postId);
+	public int getApplyCount(int postId) {
+		return applyDao.getApplyCount(postId);
+	}
+
+	@Override
+	public boolean isVaildId(String id, int postId) {
+		return applyDao.isVaildId(id, postId);
+	}
+
+	@Override
+	public boolean isAlreadyApply(String id, int postId) {		
+		return applyDao.isAlreadyApply(id, postId);
 	}
 
 }

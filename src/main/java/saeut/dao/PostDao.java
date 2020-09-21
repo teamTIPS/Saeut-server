@@ -28,4 +28,6 @@ public interface PostDao {
 			
 	// userId로 Post 삭제하기
 	void removePost(int post_id) throws DataAccessException;
+	
+	boolean isExistPostId(int post_id) throws DataAccessException;
 }

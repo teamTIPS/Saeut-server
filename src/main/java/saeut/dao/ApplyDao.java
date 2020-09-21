@@ -19,5 +19,9 @@ public interface ApplyDao {
 	
 	void removeApply(int postId) throws DataAccessException;
 	
-	int countApplyByPostId(int postId) throws DataAccessException;
+	int getApplyCount(int postId) throws DataAccessException;
+	
+	boolean isVaildId(String id, int postId) throws DataAccessException;
+	
+	boolean isAlreadyApply(String id, int postId) throws DataAccessException;
 }

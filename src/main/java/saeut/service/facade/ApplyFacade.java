@@ -1,7 +1,6 @@
 package saeut.service.facade;
 
 import java.util.List;
-
 import saeut.domain.Apply;
 
 public interface ApplyFacade {
@@ -16,5 +15,10 @@ public interface ApplyFacade {
 	
 	void removeApply(int postId);
 	
-	int countApplyByPostId(int postId);
+	int getApplyCount(int postId);
+
+	boolean isVaildId(String id, int postId);
+	
+	boolean isAlreadyApply(String id, int postId);
+
 }

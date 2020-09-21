@@ -28,4 +28,6 @@ public interface PostMapper {
 		
 	// userId로 Post 삭제하기
 	void removePost(int post_id);
+	
+	boolean isExistPostId(int post_id);
 }

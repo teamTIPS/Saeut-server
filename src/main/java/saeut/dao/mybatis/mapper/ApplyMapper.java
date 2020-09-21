@@ -1,7 +1,6 @@
 package saeut.dao.mybatis.mapper;
 
 import java.util.List;
-
 import saeut.domain.Apply;
 
 public interface ApplyMapper {
@@ -16,5 +15,9 @@ public interface ApplyMapper {
 	
 	void removeApply(int postId);
 	
-	int countApplyByPostId(int postId);
+	int getApplyCount(int postId);
+	
+	boolean isVaildId(String id, int postId);
+	
+	boolean isAlreadyApply(String id, int postId);
 }

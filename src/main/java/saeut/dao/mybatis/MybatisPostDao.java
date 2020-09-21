@@ -54,6 +54,11 @@ public class MybatisPostDao implements PostDao{
 		
 	}
 
+	@Override
+	public boolean isExistPostId(int post_id) throws DataAccessException {
+		return postMapper.isExistPostId(post_id);
+	}
+
 	
 
 	

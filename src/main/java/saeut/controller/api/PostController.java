@@ -22,11 +22,11 @@ public class PostController {
 	private PostFacade postFacade;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Post> findPostById (@PathVariable("id") String id) {
+	public ResponseEntity<List<Post>> findPostById (@PathVariable("id") String id) {
 		
 		List<Post> posts = postFacade.getPostByUserId(id);
 		
-		return new ResponseEntity(posts,HttpStatus.OK);
+		return new ResponseEntity<List<Post>>(posts,HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -34,7 +34,7 @@ public class PostController {
 		
 		List<Post> posts = postFacade.getAllPost();
 
-		return new ResponseEntity(posts,HttpStatus.OK);
+		return new ResponseEntity<List<Post>>(posts,HttpStatus.OK);
 	}
 	
 	@GetMapping("/type/{type}")
@@ -42,7 +42,7 @@ public class PostController {
 		
 		List<Post> posts = postFacade.getPostByType(type);
 		
-		return new ResponseEntity(posts,HttpStatus.OK);
+		return new ResponseEntity<List<Post>>(posts,HttpStatus.OK);
 	}
 	
 	@GetMapping("/title/{title}")
@@ -50,7 +50,7 @@ public class PostController {
 		
 		List<Post> posts = postFacade.getPostByTitle(title);
 		
-		return new ResponseEntity(posts,HttpStatus.OK);
+		return new ResponseEntity<List<Post>>(posts,HttpStatus.OK);
 	}
 	
 	
@@ -59,9 +59,9 @@ public class PostController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			postFacade.insertPost(post);
-			resEntity =new ResponseEntity("ADD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("ADD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -72,9 +72,9 @@ public class PostController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			postFacade.modPost(post);
-			resEntity =new ResponseEntity("MOD_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("MOD_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;
@@ -85,9 +85,9 @@ public class PostController {
 		ResponseEntity<String>  resEntity = null;
 		try {
 			postFacade.removePost(id);
-			resEntity =new ResponseEntity("REMOVE_SUCCEEDED",HttpStatus.OK);
+			resEntity =new ResponseEntity<String>("REMOVE_SUCCEEDED",HttpStatus.OK);
 		}catch(Exception e) {
-			resEntity = new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+			resEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		
 		return resEntity;

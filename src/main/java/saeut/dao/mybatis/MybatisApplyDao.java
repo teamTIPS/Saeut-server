@@ -43,8 +43,19 @@ public class MybatisApplyDao implements ApplyDao{
 	}
 	
 	@Override
-	public int countApplyByPostId(int postId) throws DataAccessException {
-		return applyMapper.countApplyByPostId(postId);
+	public int getApplyCount(int postId) throws DataAccessException {
+		return applyMapper.getApplyCount(postId);
 	}
 
+	@Override
+	public boolean isVaildId(String id, int postId) throws DataAccessException {
+		return applyMapper.isVaildId(id, postId);
+	}
+
+	@Override
+	public boolean isAlreadyApply(String id, int postId) throws DataAccessException {
+		return applyMapper.isAlreadyApply(id, postId);
+	}
+
+	
 }

@@ -14,7 +14,7 @@ public class Post implements Serializable{
 	private int post_id; //sequence
 	private String id; // (FK) account 클래스의 id
 	private String title; //게시물 제목
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date post_date; //게시글 추가한 날짜 
 	private String contents; // 게시글 내용
 	@JsonFormat(pattern="yyyy-MM-dd")

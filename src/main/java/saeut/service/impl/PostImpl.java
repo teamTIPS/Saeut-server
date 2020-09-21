@@ -67,6 +67,12 @@ public class PostImpl implements PostFacade {
 		postDao.removePost(post_id);
 	}
 	
+	@Override
+	public boolean isExistPostId(int post_id) {
+		return postDao.isExistPostId(post_id);
+	}
+	
+	
 	/* CheckList  */
 	@Override
 	public List<CheckList> getAllCheckList() {
@@ -77,6 +83,7 @@ public class PostImpl implements PostFacade {
 	public List<CheckList> getTop6CheckList() {
 		return checkListDao.getTop6CheckList();
 	}
+
 	
 }
 

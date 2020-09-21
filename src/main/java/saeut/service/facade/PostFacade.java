@@ -18,6 +18,7 @@ public interface PostFacade {
 	void insertPost(Post Post);
 	void modPost(Post Post);
 	void removePost(int post_id);
+	boolean isExistPostId(int post_id);
 	
 	/////////////////////////////////////////////////////////////////////////
 	/* 돌봄 요청자가 체크하는 CheckList */

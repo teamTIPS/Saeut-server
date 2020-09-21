@@ -42,11 +42,17 @@
 		where post_id=#{post_id}
  	 </update> 
      
-  	<delete id="removePost"  parameterType="String">
+  	<delete id="removePost"  parameterType="int">
 	   delete
 	   from Post
 	   where post_id=#{post_id}
 	</delete>
   
-  
+  	<select id="isExistPostId" resultType="boolean">
+  		select case when (count(post_id) > 0) 
+				then true else false end as 'isExistPostId'
+		from Post
+		where post_id=#{post_id}
+  	</select>
+ 
  </mapper>

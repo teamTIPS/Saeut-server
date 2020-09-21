@@ -6,24 +6,28 @@
   	<select id="getAllPost" resultType="Post">
 	  	select post_id, id, title, post_date, contents, start_date, due_date, status, type
 	  	from Post
+	  	order by post_date desc
   	</select>
   
    	<select id="getPostByUserId" parameterType="String" resultType="Post">
 	  	select post_id, id, title, post_date, contents, start_date, due_date, status, type
 	  	from Post
 	  	where id=#{id}
+	  	order by post_date desc
   	</select>
   	
   	<select id="getPostByType" parameterType="int" resultType="Post">
 	  	select id, post_id, id, title, post_date, contents, start_date, due_date, status
 	  	from Post
 	  	where type=#{type}
+	  	order by post_date desc
   	</select>
   	
   	<select id="getPostByTitle" parameterType="String" resultType="Post">
 	  	select id, post_id, id, post_date, contents, start_date, due_date, status, type
 	  	from Post
 	  	where title like CONCAT('%',#{title},'%')
+	  	order by post_date desc
   	</select>
   
   	<insert id="insertPost" parameterType="Post">

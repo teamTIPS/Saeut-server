@@ -18,7 +18,8 @@ public class UserAdditional implements Serializable{
 	private String zipcode;
 	private String address1;
 	private String address2;
-	
+	private String add_latitude;
+	private String add_longitude;
 	
 	public String getId() {
 		return id;
@@ -74,12 +75,23 @@ public class UserAdditional implements Serializable{
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	
+	public String getAdd_latitude() {
+		return add_latitude;
+	}
+	public void setAdd_latitude(String add_latitude) {
+		this.add_latitude = add_latitude;
+	}
+	public String getAdd_longitude(){
+		return add_longitude;
+	}
+	public void setAdd_longitude(String add_longitude) {
+		this.add_longitude = add_longitude;
+	}
 	@Override
 	public String toString() {
 		return "UserAdditional [id=" + id + ", nickname=" + nickname + ", pic=" + pic + ", rank=" + rank + ", score="
 				+ score + ", description=" + description + ", zipcode=" + zipcode + ", address1=" + address1
-				+ ", address2=" + address2 + "]";
+				+ ", address2=" + address2 + ", add_latitude = " + add_latitude + ", add_longitude = " + add_longitude + "]";
 	}
 	
 }

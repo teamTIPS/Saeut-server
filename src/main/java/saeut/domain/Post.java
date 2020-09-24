@@ -14,12 +14,12 @@ public class Post implements Serializable{
 	private int post_id; //sequence
 	private String id; // (FK) account 클래스의 id
 	private String title; //게시물 제목
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date post_date; //게시글 추가한 날짜 
 	private String contents; // 게시글 내용
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date start_date; // 돌봄 요청 시작 날짜 -> 모바일 캘린더
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date due_date; // 돌봄 요청 마지막 날짜  -> 모바일 캘린더 
 	private int status; // 모집 중(0)/모집 마감(1)/완료(2)
 	private int type; // 장애인(0) / 아동(1) / 노인(2)

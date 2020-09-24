@@ -22,7 +22,7 @@ public class UserEssential implements Serializable {
     private String password;
     private String name;
     private int phone;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
     private Date birth;
     private int gender;
     private boolean perm1;

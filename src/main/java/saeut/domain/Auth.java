@@ -8,7 +8,7 @@ public class Auth {
 	
 	private String id;
 	private String refreshToken;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date refreshToken_expireTime;
 	
 	public String getId() {

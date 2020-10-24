@@ -10,10 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import saeut.dao.UserEssentialDao;
 import saeut.dao.CertificateDao;
 import saeut.dao.UserAdditionalDao;
+import saeut.dao.UserGroupDao;
 import saeut.domain.UserEssential;
+import saeut.domain.UserGroup;
 import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
+import saeut.domain.UserGroup;
 import saeut.service.facade.MyPageFacade;
 
 @Repository
@@ -27,6 +30,8 @@ public class MyPageImpl implements MyPageFacade{
 	private CertificateDao certificateDao;
 	@Autowired
 	private UserAdditionalDao UserAdditionalDao;
+	@Autowired
+	private UserGroupDao userGroupDao;
 	
 	/*
 	 * UserEssentialDao
@@ -144,6 +149,48 @@ public class MyPageImpl implements MyPageFacade{
 	@Override
 	public boolean isNickDuplicated(String nickname) {
 		return UserAdditionalDao.isNickDuplicated(nickname);
+	}
+
+	@Override
+	public List<UserGroup> getAllUserGroup() {
+		// TODO Auto-generated method stub
+		return userGroupDao.getAllUserGroup();
+	}
+
+	@Override
+	public List<UserGroup> getUserGroupByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return userGroupDao.getUserGroupByUserId(userId);
+	}
+
+	@Override
+	public List<UserGroup> getUserGroupByType(int type) {
+		// TODO Auto-generated method stub
+		return userGroupDao.getUserGroupByType(type);
+	}
+
+	@Override
+	public List<UserGroup> getUserGroupByPost_id(int post_id) {
+		// TODO Auto-generated method stub
+		return userGroupDao.getUserGroupByPost_id(post_id);
+	}
+
+	@Override
+	public void insertUserGroup(UserGroup userGroup) {
+		// TODO Auto-generated method stub
+		userGroupDao.insertUserGroup(userGroup);
+	}
+
+	@Override
+	public void modUserGroup(UserGroup userGroup) {
+		// TODO Auto-generated method stub
+		userGroupDao.modUserGroup(userGroup);
+	}
+
+	@Override
+	public void removeUserGroup(String userID) {
+		// TODO Auto-generated method stub
+		userGroupDao.removeUserGroup(userID);
 	}
 	
 }

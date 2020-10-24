@@ -11,7 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import saeut.dao.CheckListDao;
 import saeut.dao.PostDao;
 import saeut.domain.CheckList;
+import saeut.domain.Comment;
 import saeut.domain.Post;
+import saeut.domain.Tag;
+import saeut.dao.TagDao;
+import saeut.dao.CommentDao;
 import saeut.service.facade.PostFacade;
 
 @Repository
@@ -21,10 +25,13 @@ public class PostImpl implements PostFacade {
 
 	@Autowired
 	private PostDao postDao;
-	
-	private CheckListDao checkListDao;
-	
 	@Autowired
+	private CheckListDao checkListDao;
+	@Autowired
+	private TagDao tagDao;
+	@Autowired
+	private CommentDao commentDao;
+	
 	public void setCheckListDao(CheckListDao checkListDao) {
 		this.checkListDao = checkListDao;
 	}
@@ -82,6 +89,60 @@ public class PostImpl implements PostFacade {
 	@Override
 	public List<CheckList> getTop6CheckList() {
 		return checkListDao.getTop6CheckList();
+	}
+
+	@Override
+	public List<Comment> getCommentByUserId(String id) {
+		// TODO Auto-generated method stub
+		return commentDao.getCommentByUserId(id);
+	}
+
+	@Override
+	public List<Comment> getAllComment() {
+		// TODO Auto-generated method stub
+		return commentDao.getAllComment();
+	}
+
+	@Override
+	public void insertComment(Comment comment) {
+		// TODO Auto-generated method stub
+		commentDao.insertComment(comment);
+	}
+
+	@Override
+	public void modComment(Comment comment) {
+		// TODO Auto-generated method stub
+		commentDao.modComment(comment);
+	}
+
+	@Override
+	public void removeComment(int commet_id) {
+		// TODO Auto-generated method stub
+		commentDao.removeComment(commet_id);
+	}
+
+	@Override
+	public List<Tag> getAllTag() {
+		// TODO Auto-generated method stub
+		return tagDao.getAllTag();
+	}
+
+	@Override
+	public List<Tag> getTagByPostID(int post_id) {
+		// TODO Auto-generated method stub
+		return tagDao.getTagByPostID(post_id);
+	}
+
+	@Override
+	public void insertTag(Tag tag) {
+		// TODO Auto-generated method stub
+		tagDao.insertTag(tag);
+	}
+
+	@Override
+	public void removeTag(int post_id) {
+		// TODO Auto-generated method stub
+		tagDao.removeTag(post_id);
 	}
 
 	

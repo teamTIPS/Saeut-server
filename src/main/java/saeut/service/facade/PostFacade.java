@@ -3,7 +3,9 @@ package saeut.service.facade;
 import java.util.List;
 
 import saeut.domain.CheckList;
+import saeut.domain.Comment;
 import saeut.domain.Post;
+import saeut.domain.Tag;
 
 public interface PostFacade {
 
@@ -26,6 +28,23 @@ public interface PostFacade {
 
 	List<CheckList> getAllCheckList();
 	List<CheckList> getTop6CheckList();
-				
+	
+	/////////////////////////////////////////////////////////////////////////
+	/* 사용자가 작성하는 Comment */
+	///////////////////////////////////////////////////////////////////////
+	List<Comment> getCommentByUserId(String id);	
+	List<Comment> getAllComment(); 	
+	void insertComment(Comment comment);	
+	void modComment(Comment comment);	
+	void removeComment(int commet_id);
+	
+	/////////////////////////////////////////////////////////////////////////
+	/* Post에 할당되는 Tag */
+	///////////////////////////////////////////////////////////////////////
+	List<Tag> getAllTag();
+	List<Tag> getTagByPostID(int post_id);
+	void insertTag(Tag tag);
+	void removeTag(int post_id);
+	
 	
 }

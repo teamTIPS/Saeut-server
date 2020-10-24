@@ -4,7 +4,8 @@ public class Apply {
 	
 	private int post_id; // (FK) - 게시물 아이디 
 	private String id; // (FK) - 유저 아이디 
-	private String introduce;
+	private String introduce; // 자기소개
+	private int type; // 제공자(0), 요청자(1) 타입
 	
 	public int getPost_id() {
 		return post_id;
@@ -24,5 +25,11 @@ public class Apply {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	} 
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	
 }

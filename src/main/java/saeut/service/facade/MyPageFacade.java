@@ -3,6 +3,7 @@ package saeut.service.facade;
 import java.util.List;
 
 import saeut.domain.UserEssential;
+import saeut.domain.UserGroup;
 import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
@@ -39,5 +40,15 @@ public interface MyPageFacade {
 	void removeUserAdditional(String userId);
 	boolean isNickDuplicated(String nickname);
 
+	/////////////////////////////////////////////////////////////////////////
+	/* UserGroup */
+	/////////////////////////////////////////////////////////////////////////	
+	List<UserGroup> getAllUserGroup();		
+	List<UserGroup> getUserGroupByUserId(String userId);
+	List<UserGroup> getUserGroupByType(int type);
+	List<UserGroup> getUserGroupByPost_id(int post_id);
+	void insertUserGroup(UserGroup userGroup);
+	void modUserGroup(UserGroup userGroup);
+	void removeUserGroup(String userID);
 
 }

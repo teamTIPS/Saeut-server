@@ -4,41 +4,41 @@
   <cache />
   
   	<select id="getAllPost" resultType="Post">
-	  	select post_id, id, title, post_date, contents, start_date, due_date, status, type
+	  	select *
 	  	from Post
 	  	order by post_date desc
   	</select>
   
    	<select id="getPostByUserId" parameterType="String" resultType="Post">
-	  	select post_id, id, title, post_date, contents, start_date, due_date, status, type
+	  	select *
 	  	from Post
 	  	where id=#{id}
 	  	order by post_date desc
   	</select>
   	
   	<select id="getPostByType" parameterType="int" resultType="Post">
-	  	select id, post_id, id, title, post_date, contents, start_date, due_date, status
+	  	select *
 	  	from Post
 	  	where type=#{type}
 	  	order by post_date desc
   	</select>
   	
   	<select id="getPostByTitle" parameterType="String" resultType="Post">
-	  	select id, post_id, id, post_date, contents, start_date, due_date, status, type
+	  	select *
 	  	from Post
 	  	where title like CONCAT('%',#{title},'%')
 	  	order by post_date desc
   	</select>
   
   	<insert id="insertPost" parameterType="Post">
-  	insert into Post(id, title, contents, start_date, due_date, status, type)
-  	values(#{id},#{title},#{contents}, #{start_date},#{due_date}, #{status}, #{type})
+  	insert into Post(id, title, post_age, post_schedule, post_gender, contents, start_date, due_date, recruit_status, type, payment, wage, limit_supply, limit_demand)
+  	values(#{id},#{title},#{post_age}, #{post_schedule}, #{post_gender}, #{contents}, #{start_date},#{due_date}, #{recruit_status}, #{type}, #{payment}, #{wage}, #{limit_supply}, #{limit_demand})
   	</insert>
   
   	<update id="modPost"  parameterType="Post">
 		update Post
-		set title=#{title}, contents=#{contents}, start_date=#{start_date}, due_date=#{due_date},
-		      status=#{status} , type=#{type}
+		set title=#{title}, post_age=#{post_age}, post_schedule=#{post_schedule}, post_gender=#{post_gender}, contents=#{contents}, start_date=#{start_date}, due_date=#{due_date},
+		      recruit_status=#{recruit_status}, type=#{type}, payment=#{payment}, wage=#{wage}, limit_supply=#{limit_supply}, limit_demand=#{limit_demand}
 		where post_id=#{post_id}
  	 </update> 
      

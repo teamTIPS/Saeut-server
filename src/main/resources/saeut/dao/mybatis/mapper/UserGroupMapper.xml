@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="saeut.dao.mybatis.mapper.UserGroupMapper">
+  <cache />
+  
+  	<select id="getAllUserGroup" resultType="UserGroup">
+	  	select *
+	  	from UserGroup
+  	</select>
+  
+   	<select id="getUserGroupByUserId" parameterType="String" resultType="UserGroup">
+	  	select *
+	  	from UserGroup
+	  	where id=#{id}
+  	</select>
+  	
+  	<select id="getUserGroupByType" parameterType="int" resultType="UserGroup">
+	  	select *
+	  	from UserGroup
+	  	where type=#{type}
+  	</select>
+  	
+  	<select id="getUserGroupByPost_id" parameterType="int" resultType="UserGroup">
+	  	select *
+	  	from UserGroup
+	  	where post_id=#{post_id}
+  	</select>
+  
+  	<insert id="insertUserGroup" parameterType="UserGroup">
+  	insert into UserGroup(post_id, captain, type, id)
+  	values(#{post_id}, #{captain}, #{type}, #{id})
+  	</insert>
+  
+  	<update id="modUserGroup"  parameterType="UserGroup">
+		update UserGroup
+		set captain=#{captain}, type=#{type}, post_id=#{post_id}
+		where id=#{id}
+ 	 </update> 
+     
+  	<delete id="removeUserGroup"  parameterType="String">
+	   delete from UserGroup
+	   where id=#{id}
+	</delete>
+ 
+ </mapper>

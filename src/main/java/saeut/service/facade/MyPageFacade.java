@@ -5,7 +5,6 @@ import java.util.List;
 import saeut.domain.UserEssential;
 import saeut.domain.UserGroup;
 import saeut.domain.Board;
-import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
 
@@ -22,15 +21,6 @@ public interface MyPageFacade {
 	void modUserEssential(UserEssential UserEssential);
 	void removeUserEssential(String id);
 	boolean isIdDuplicated(String id);
-	/////////////////////////////////////////////////////////////////////////
-	/* Certificate */
-	/////////////////////////////////////////////////////////////////////////	
-	List<Certificate> getAllCertificate();
-	List<Certificate> getCertificateByUserId(String userId);
-	List<Certificate> getCertificateByTag(int tag);
-	void insertCertificate(Certificate certificate);
-	void modCertificate(Certificate certificate);
-	void removeCertificate(int cert_id);
 	/////////////////////////////////////////////////////////////////////////
 	/* UserAdditional */
 	/////////////////////////////////////////////////////////////////////////	

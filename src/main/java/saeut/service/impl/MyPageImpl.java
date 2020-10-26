@@ -8,13 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import saeut.dao.UserEssentialDao;
-import saeut.dao.CertificateDao;
 import saeut.dao.UserAdditionalDao;
 import saeut.dao.UserGroupDao;
 import saeut.dao.BoardDao;
 import saeut.domain.UserEssential;
 import saeut.domain.UserGroup;
-import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
 import saeut.domain.Board;
@@ -27,8 +25,6 @@ public class MyPageImpl implements MyPageFacade{
 
 	@Autowired
 	private UserEssentialDao UserEssentialDao;
-	@Autowired
-	private CertificateDao certificateDao;
 	@Autowired
 	private UserAdditionalDao UserAdditionalDao;
 	@Autowired
@@ -84,39 +80,6 @@ public class MyPageImpl implements MyPageFacade{
 	@Override
 	public void removeUserEssential(String userId) {
 		UserEssentialDao.removeUserEssential(userId);
-	}
-
-	/*
-	 * CertificateDao
-	 */
-	@Override
-	public List<Certificate> getAllCertificate() {
-		return certificateDao.getAllCertificate();
-	}
-
-	@Override
-	public List<Certificate> getCertificateByUserId(String userId) {
-		return certificateDao.getCertificateByUserId(userId);
-	}
-	
-	@Override
-	public List<Certificate> getCertificateByTag(int tag) {
-		return certificateDao.getCertificateByTag(tag);
-	}
-
-	@Override
-	public void insertCertificate(Certificate certificate) {
-		certificateDao.insertCertificate(certificate);
-	}
-
-	@Override
-	public void modCertificate(Certificate certificate) {
-		certificateDao.modCertificate(certificate);
-	}
-
-	@Override
-	public void removeCertificate(int cert_id) {
-		certificateDao.removeCertificate(cert_id);
 	}
 
 	/*

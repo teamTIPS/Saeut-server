@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="saeut.dao.mybatis.mapper.BoardMapper">
+  <cache />
+  
+  	<select id="getAllBoard" resultType="Board">
+	  	select post_id, b.id, post_date, contents, cnt_like, cnt_reply, rank, nickname, address1 
+	  	from Board b 
+	  	join UserAdditional u on b.id=u.id 
+	  	join Rank r on b.id = r.id 
+	  	order by post_date desc;
+  	</select>
+  
+   	<select id="getBoardByUserId" parameterType="String" resultType="Board">
+	  	select post_id, b.id, post_date, contents, cnt_like, cnt_reply, rank, nickname, address1 
+	  	from Board b 
+	  	join UserAdditional u on b.id=u.id 
+	  	join Rank r on b.id = r.id 
+	  	where b.id=#{id}
+	  	order by post_date desc;
+  	</select>
+  	
+  	<select id="getBoardByPost_id" parameterType="int" resultType="Board">
+	  	select post_id, b.id, post_date, contents, cnt_like, cnt_reply, rank, nickname, address1 
+	  	from Board b 
+	  	join UserAdditional u on b.id=u.id 
+	  	join Rank r on b.id = r.id 
+	  	where post_id=#{post_id}
+	  	order by post_date desc;
+  	</select>
+  
+  	<insert id="insertBoard" parameterType="Board">
+  	insert into Board(id, contents, cnt_like, cnt_reply) 
+  	values(#{id}, #{contents}, #{cnt_like}, #{cnt_reply});
+  	</insert>
+  
+  	<update id="modBoard"  parameterType="Board">
+		update Post
+		set contents=#{contents}
+		where post_id=#{post_id}
+ 	 </update> 
+     
+  	<delete id="removeBoard"  parameterType="int">
+	   delete
+	   from Board
+	   where post_id=#{post_id}
+	</delete>
+ 
+ </mapper>

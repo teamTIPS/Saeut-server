@@ -4,26 +4,26 @@
   <cache />
   
 	  <select id="getUserAdditionalByUserId" resultType="UserAdditional">
-	    select id, nickname, pic, rank, score, description, zipcode, address1, address2, add_latitude, add_longitude
+	    select *
 		from UserAdditional 
 		where id = #{id}
 	  </select>
 	  
 	  <select id="getAllUserAdditional" resultType="UserAdditional">
-	    select  id, nickname, pic, rank, score, description, zipcode, address1, address2, add_latitude, add_longitude
+	    select *
 		from UserAdditional
 	  </select>
 	  
 	   <insert id="insertUserAdditional"  parameterType="UserAdditional">
-		 insert into UserAdditional( id, nickname, pic, rank, score, description, zipcode, address1, address2, add_latitude, add_longitude)
-		 values(#{id}, #{nickname}, #{pic}, #{rank}, #{score}, #{description}, 
-		 			 #{zipcode}, #{address1}, #{address2}, #{add_latitude}, #{add_longitude})
+		 insert into UserAdditional(id, nickname, pic, description, zipcode, address1, address2, add_latitude, add_longitude, introduce, grade)
+		 values(#{id}, #{nickname}, #{pic}, #{description}, #{zipcode}, #{address1}, #{address2}, #{add_latitude}, #{add_longitude}, #{introduce}, #{grade})
 		</insert>
 	
    	  <update id="modUserAdditional"  parameterType="UserAdditional">
 	     update UserAdditional
 	     set   nickname=#{nickname}, pic=#{pic}, rank=#{rank}, score=#{score}, description=#{description},
-	     		zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, add_latitude=#{add_latitude}, add_longitude=#{add_longitude}
+	     		zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, add_latitude=#{add_latitude}, 
+	     		add_longitude=#{add_longitude}, introduce=#{introduce}, grade=#{grade}
 	     where id=#{id}
    	  </update> 
      

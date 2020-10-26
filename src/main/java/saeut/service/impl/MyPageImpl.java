@@ -11,12 +11,13 @@ import saeut.dao.UserEssentialDao;
 import saeut.dao.CertificateDao;
 import saeut.dao.UserAdditionalDao;
 import saeut.dao.UserGroupDao;
+import saeut.dao.BoardDao;
 import saeut.domain.UserEssential;
 import saeut.domain.UserGroup;
 import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
-import saeut.domain.UserGroup;
+import saeut.domain.Board;
 import saeut.service.facade.MyPageFacade;
 
 @Repository
@@ -32,7 +33,8 @@ public class MyPageImpl implements MyPageFacade{
 	private UserAdditionalDao UserAdditionalDao;
 	@Autowired
 	private UserGroupDao userGroupDao;
-	
+	@Autowired
+	private BoardDao boardDao;
 	/*
 	 * UserEssentialDao
 	 */
@@ -191,6 +193,42 @@ public class MyPageImpl implements MyPageFacade{
 	public void removeUserGroup(String userID) {
 		// TODO Auto-generated method stub
 		userGroupDao.removeUserGroup(userID);
+	}
+
+	@Override
+	public List<Board> getAllBoard() {
+		// TODO Auto-generated method stub
+		return boardDao.getAllBoard();
+	}
+
+	@Override
+	public List<Board> getBoardByUserId(String userid) {
+		// TODO Auto-generated method stub
+		return boardDao.getBoardByUserId(userid);
+	}
+
+	@Override
+	public List<Board> getBoardByPost_id(int post_id) {
+		// TODO Auto-generated method stub
+		return boardDao.getBoardByPost_id(post_id);
+	}
+
+	@Override
+	public void insertBoard(Board board) {
+		// TODO Auto-generated method stub
+		boardDao.insertBoard(board);
+	}
+
+	@Override
+	public void modBoard(Board board) {
+		// TODO Auto-generated method stub
+		boardDao.modBoard(board);
+	}
+
+	@Override
+	public void removeBoard(int post_id) {
+		// TODO Auto-generated method stub
+		boardDao.removeBoard(post_id);
 	}
 	
 }

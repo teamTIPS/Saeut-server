@@ -31,7 +31,7 @@
 	
    	  <update id="modUserEssential"  parameterType="UserEssential">
 	     update UserEssential
-	     set password=#{password}, name=#{name}, phone=#{phone}, birth=#{birth}, gender=#{gender}, perm1=#{perm1}}
+	     set password=#{password}, name=#{name}, phone=#{phone}, birth=#{birth}, gender=#{gender}, perm1=#{perm1}
 	     where	id=#{id}
    	  </update> 
      

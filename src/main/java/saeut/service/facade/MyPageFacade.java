@@ -4,6 +4,7 @@ import java.util.List;
 
 import saeut.domain.UserEssential;
 import saeut.domain.UserGroup;
+import saeut.domain.Board;
 import saeut.domain.Certificate;
 import saeut.domain.UserAdditional;
 import saeut.domain.LoginInfo;
@@ -50,5 +51,15 @@ public interface MyPageFacade {
 	void insertUserGroup(UserGroup userGroup);
 	void modUserGroup(UserGroup userGroup);
 	void removeUserGroup(String userID);
-
+	
+	/////////////////////////////////////////////////////////////////////////
+	/* Board */
+	/////////////////////////////////////////////////////////////////////////	
+	List<Board> getAllBoard();
+	List<Board> getBoardByUserId(String userid);
+	List<Board> getBoardByPost_id(int post_id);
+	void insertBoard(Board board);
+	void modBoard(Board board);
+	void removeBoard(int post_id);
+	
 }

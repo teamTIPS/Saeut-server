@@ -52,7 +52,9 @@ public class SignonController {
 	
 		if (UserEssential_result == null) { 
 				//resEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-			throw new LoginInvalidException("Login invalid error");
+			throw new LoginInvalidException("Login invalid error:  NULL UserEssential_result ");
+		}else if(UserAdditional_result == null) {
+			throw new LoginInvalidException("Login invalid error: NULL UserAdditional_result");
 		}else {  
 			// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...
 			Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());

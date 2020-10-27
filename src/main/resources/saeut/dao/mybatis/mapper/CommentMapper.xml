@@ -21,10 +21,19 @@
 	
    	  <update id="modComment"  parameterType="Comment">
 	     update Comment
-	     set contents=#{contents}, write_time=#{write_time}
+	     <set>
+	     	<if test="contents != null">contents=#{contents}, </if>
+	     	<if test="write_time != null">write_time=#{write_time} </if>
+	     </set>
 	     where comment_id=#{comment_id}
    	  </update> 
-     
+   	  
+   	<!--   	  <update id="modComment"  parameterType="Comment">
+	     update Comment
+	     set contents=#{contents}, write_time=#{write_time}
+	     where comment_id=#{comment_id}
+   	  </update>  -->
+   	  
       <delete id="removeComment"  parameterType="Integer">
 	   delete from Comment
 	   where comment_id=#{comment_id}

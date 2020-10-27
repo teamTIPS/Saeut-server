@@ -37,10 +37,30 @@
   
   	<update id="modPost"  parameterType="Post">
 		update Post
-		set title=#{title}, post_age=#{post_age}, post_schedule=#{post_schedule}, post_gender=#{post_gender}, contents=#{contents}, start_date=#{start_date}, due_date=#{due_date},
-		      recruit_status=#{recruit_status}, type=#{type}, payment=#{payment}, wage=#{wage}, limit_supply=#{limit_supply}, limit_demand=#{limit_demand}
+		<set>
+			<if test="title != null">title=#{title}, </if>
+			<if test="post_age != null">post_age=#{post_age}, </if>
+			<if test="post_schedule != null">post_schedule=#{post_schedule}, </if>
+			<if test="post_gender != null">post_gender=#{post_gender}, </if>
+			<if test="start_date != null">start_date=#{start_date}, </if>
+			<if test="due_date != null">due_date=#{due_date}, </if>
+			<if test="recruit_status != null">recruit_status=#{recruit_status}, </if>
+			<if test="type != null">type=#{type}, </if>
+			<if test="payment != null">payment=#{payment}, </if>
+			<if test="wage != null">wage=#{wage}, </if>
+			<if test="limit_supply != null">limit_supply=#{limit_supply}, </if>
+			<if test="limit_demand != null">limit_demand=#{limit_demand} </if>
+		</set>
 		where post_id=#{post_id}
  	 </update> 
+ 	 
+<!--  	 <update id="modPost"  parameterType="Post">
+		update Post
+		set title=
+			#{title}, post_age=#{post_age}, post_schedule=#{post_schedule}, post_gender=#{post_gender}, contents=#{contents}, start_date=#{start_date}, due_date=#{due_date},
+		      recruit_status=#{recruit_status}, type=#{type}, payment=#{payment}, wage=#{wage}, limit_supply=#{limit_supply}, limit_demand=#{limit_demand}
+		where post_id=#{post_id}
+ 	 </update>  -->
      
   	<delete id="removePost"  parameterType="int">
 	   delete

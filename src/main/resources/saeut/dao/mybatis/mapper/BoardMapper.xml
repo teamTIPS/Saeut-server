@@ -36,10 +36,18 @@
   
   	<update id="modBoard"  parameterType="Board">
 		update Post
+		<set>
+			<if test="contents != null">contents=#{contents}</if>>
+		</set>
+		where post_id=#{post_id}
+ 	 </update> 
+ 	 
+ <!-- 	 <update id="modBoard"  parameterType="Board">
+		update Post
 		set contents=#{contents}
 		where post_id=#{post_id}
  	 </update> 
-     
+      -->
   	<delete id="removeBoard"  parameterType="int">
 	   delete
 	   from Board

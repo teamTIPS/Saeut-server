@@ -13,6 +13,8 @@ public interface CommentMapper {
 	
 	List<Comment> getAllComment(); 
 	
+	List<Comment> getCommentByPostId(int post_id);
+	
 	void insertComment(Comment comment);
 	
 	void modComment(Comment comment);

@@ -37,6 +37,13 @@ public class CommentController {
 		return new ResponseEntity<List<Comment>>(comments,HttpStatus.OK);
 	}
 	
+	@GetMapping("/group/{post_id}")
+	public ResponseEntity<List<Comment>> findCommentByPostId (@PathVariable("post_id") int post_id) {
+		
+		List<Comment> comments = postFacade.getCommentByPostId(post_id);
+		return new ResponseEntity<List<Comment>>(comments,HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<String> addComment (@RequestBody Comment comment) {
 		ResponseEntity<String>  resEntity = null;

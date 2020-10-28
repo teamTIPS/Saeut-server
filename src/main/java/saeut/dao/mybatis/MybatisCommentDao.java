@@ -27,6 +27,11 @@ public class MybatisCommentDao implements CommentDao{
 		// TODO Auto-generated method stub
 		return commentMapper.getAllComment();
 	}
+	
+	@Override
+	public List<Comment> getCommentByPostId(int post_id) {
+		return commentMapper.getCommentByPostId(post_id);
+	}
 
 	@Override
 	public void insertComment(Comment comment) {
@@ -45,8 +50,6 @@ public class MybatisCommentDao implements CommentDao{
 		// TODO Auto-generated method stub
 		commentMapper.removeComment(commet_id);
 	}
-
 	
-
 	
 }

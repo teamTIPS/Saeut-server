@@ -14,6 +14,12 @@
 		from Comment
 	  </select>
 	  
+	  <select id="getCommentByPostId" parameterType="int" resultType="Comment">
+	    select comment_id, id, post_id, contents, write_time
+		from Comment
+		where post_id = #{post_id}
+	  </select>
+	  
 	  <insert id="insertComment"  parameterType="Comment">
 		 insert into Comment(post_id, id, contents)
 		 values(#{post_id}, #{id}, #{contents})

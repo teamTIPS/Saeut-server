@@ -34,6 +34,7 @@ public interface PostFacade {
 	///////////////////////////////////////////////////////////////////////
 	List<Comment> getCommentByUserId(String id);	
 	List<Comment> getAllComment(); 	
+	List<Comment> getCommentByPostId(int post_id);
 	void insertComment(Comment comment);	
 	void modComment(Comment comment);	
 	void removeComment(int commet_id);

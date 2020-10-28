@@ -111,6 +111,11 @@ public class PostImpl implements PostFacade {
 		// TODO Auto-generated method stub
 		return commentDao.getAllComment();
 	}
+	
+	@Override
+	public List<Comment> getCommentByPostId(int post_id) {
+		return commentDao.getCommentByPostId(post_id);
+	}
 
 	@Override
 	public void insertComment(Comment comment) {

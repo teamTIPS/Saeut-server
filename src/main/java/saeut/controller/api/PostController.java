@@ -1,5 +1,6 @@
 package saeut.controller.api;
 
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,6 @@ public class PostController {
 	public ResponseEntity<List<Post>> findAllPost () {
 		
 		List<Post> posts = postFacade.getAllPost();
-
 		return new ResponseEntity<List<Post>>(posts,HttpStatus.OK);
 	}
 	

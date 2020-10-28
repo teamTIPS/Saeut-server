@@ -57,7 +57,7 @@ public class SignonController {
 		
 		Jwt token = this.jwtUtil.makeJwt(loginInfo.getId(), loginInfo.getPassword());
 		if(UserAdditional_result == null) {
-			UserAdditional_result = new UserAdditional(loginInfo.getId(), " ", " ", " ", " ", " ", " ", " ", " ", " ", 0);
+			UserAdditional_result = new UserAdditional(loginInfo.getId(), "", "", "", "", "", "", "", "", "", 0);
 			resEntity = ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(token, UserEssential_result, UserAdditional_result));
 		}else {  
 			// 로그인 성공 시 토큰 생성 후 Response에 담아 전송 + 유저 정보까지 리턴하도록...

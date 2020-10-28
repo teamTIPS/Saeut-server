@@ -10,6 +10,21 @@ import lombok.Data;
 @Data
 public class UserAdditional implements Serializable{
 	
+	public UserAdditional() {}
+	public UserAdditional(String id, String nickname, String pic, String description, String zipcode, String address1,
+			String address2, String add_latitude, String add_longitude, String introduce, double grade) {
+		this.id = id;
+		this.nickname = nickname;
+		this.pic = pic;
+		this.description = description;
+		this.zipcode = zipcode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.add_latitude = add_latitude;
+		this.add_longitude = add_longitude;
+		this.introduce = introduce;
+		this.grade = grade;
+	}
 	private String id; // (FK) - PK
 	private String nickname; 
 	private String pic;

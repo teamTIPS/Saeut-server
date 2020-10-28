@@ -37,10 +37,10 @@
   </select>
   
   <select id="isVaildId" resultType="boolean">
-  	select case when (p.id != a.id)
-		then true else false end as 'isValidId'
-	from Apply a, Post p
-	where a.id = #{param1} and p.post_id = #{param2}
+	select case when (p.id = #{param1})
+	then false else true end as 'isValidId'
+	from Post p
+	where  p.post_id = #{param2};
   </select>
   
   <select id="isAlreadyApply" resultType="boolean">

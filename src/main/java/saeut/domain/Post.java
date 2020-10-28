@@ -2,6 +2,7 @@ package saeut.domain;
 
 import java.io.Serializable;
 import java.util.Date; //import java.util.sql일수도
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,6 +31,7 @@ public class Post implements Serializable{
 	private int wage; // 제공자가 받는 시급
 	private int limit_supply; // 최대 돌봄제공자 수
 	private int limit_demand; // 최대 돌봄요청자 수
+	private List<String> tagList; //client에서 tagName이 담긴 arrayList를 POST 넣어서 넘겨줘야함 
 	
 	public int getPost_id() {
 		return post_id;
@@ -127,5 +129,11 @@ public class Post implements Serializable{
 	public void setLimit_demand(int limit_demand) {
 		this.limit_demand = limit_demand;
 	}
+	public List<String> getTagList() {
+		return tagList;
+	}
+	public void setTagList(List<String> tagList) {
+		this.tagList = tagList;
+	}	
 	
 }

@@ -60,8 +60,17 @@ public class PostImpl implements PostFacade {
 	}
 
 	@Override
+	@Transactional
 	public void insertPost(Post Post) {
 		postDao.insertPost(Post);
+		int post_id = Post.getPost_id(); 
+		System.out.println("PostImpl : " + post_id);
+		
+		List<String> tagList = Post.getTagList();
+		for(String tagName:tagList) {
+			Tag tag = new Tag(post_id, tagName);
+			tagDao.insertTag(tag);
+		}
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class UserAdditionalController {
 	}	
 	
 
-	@PutMapping
+	@PostMapping("/edit")
 	public ResponseEntity<String> modUserAdditional (@RequestBody UserAdditional UserAdditional) {
 		ResponseEntity<String>  resEntity = null;
 		try {

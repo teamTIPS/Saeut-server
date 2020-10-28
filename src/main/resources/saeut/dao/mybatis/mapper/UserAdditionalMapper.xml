@@ -14,18 +14,27 @@
 		from UserAdditional
 	  </select>
 	  
-	   <insert id="insertUserAdditional"  parameterType="UserAdditional">
+	  <insert id="insertUserAdditional"  parameterType="UserAdditional">
 		 insert into UserAdditional(id, nickname, pic, description, zipcode, address1, address2, add_latitude, add_longitude, introduce, grade)
 		 values(#{id}, #{nickname}, #{pic}, #{description}, #{zipcode}, #{address1}, #{address2}, #{add_latitude}, #{add_longitude}, #{introduce}, #{grade})
-		</insert>
-	
+	 </insert>
+   	  
    	  <update id="modUserAdditional"  parameterType="UserAdditional">
-	     update UserAdditional
-	     set   nickname=#{nickname}, pic=#{pic}, rank=#{rank}, score=#{score}, description=#{description},
-	     		zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, add_latitude=#{add_latitude}, 
-	     		add_longitude=#{add_longitude}, introduce=#{introduce}, grade=#{grade}
-	     where id=#{id}
-   	  </update> 
+			update UserAdditional
+			<set>
+				<if test="nickname != null">nickname=#{nickname}, </if>
+				<if test="pic != null">pic=#{pic}, </if>
+				<if test="description != null">description=#{description}, </if>
+				<if test="zipcode != null">zipcode=#{zipcode}, </if>
+				<if test="address1 != null">address1=#{address1}, </if>
+				<if test="address2 != null">address2=#{address2}, </if>
+				<if test="add_latitude != null">add_latitude=#{add_latitude}, </if>
+				<if test="add_longitude != null">add_longitude=#{add_longitude}, </if>
+				<if test="introduce != null">introduce=#{introduce}, </if>
+				<if test="grade != null">grade=#{grade} </if>
+			</set>
+			where id=#{id}
+ 	 </update> 
      
       <delete id="removeUserAdditional"  parameterType="String">
 	   delete from UserAdditional

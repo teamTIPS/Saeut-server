@@ -30,10 +30,17 @@
 		</insert>
 	
    	  <update id="modUserEssential"  parameterType="UserEssential">
-	     update UserEssential
-	     set password=#{password}, name=#{name}, phone=#{phone}, birth=#{birth}, gender=#{gender}, perm1=#{perm1}
-	     where	id=#{id}
-   	  </update> 
+			update UserEssential
+			<set>
+				<if test="password != null">password=#{password}, </if>
+				<if test="name != null">name=#{name}, </if>
+				<if test="phone != null">phone=#{phone}, </if>
+				<if test="birth != null">birth=#{birth}, </if>
+				<if test="gender != null">gender=#{gender}, </if>
+				<if test="perm1 != null">perm1=#{perm1} </if>
+			</set>
+			where id=#{id}
+ 	 </update> 
      
       <delete id="removeUserEssential"  parameterType="String">
 	   delete from UserEssential
